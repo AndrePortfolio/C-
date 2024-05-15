@@ -1,0 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/14 20:27:37 by andrealbuqu       #+#    #+#             */
+/*   Updated: 2024/05/15 11:02:29 by andrealbuqu      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include "../includes/Zombie.hpp"
+
+Zombie* Zombie::zombieHorde(int N, std::string name)
+{
+    Zombie  *Horde = nullptr;
+
+    Horde = new Zombie[N];
+    
+    for (int i = 0; i < N; i++)
+        Horde[i].set_name(name);
+    
+    return (Horde);
+}
