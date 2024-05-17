@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 12:53:56 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/05/17 19:09:43 by andre-da         ###   ########.fr       */
+/*   Created: 2024/05/17 19:07:45 by andre-da          #+#    #+#             */
+/*   Updated: 2024/05/17 19:21:30 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#include "../includes/Replace.h"
 
-# include "Zombie.h"
-
-class Zombie
+int main(int argc, char *argv[])
 {
-    private:
-        std::string name;
+	if (argc != 4)
+	{
+		std::cerr << "Usage: " << argv[0] << " <filename> <s1> <s2>" << std::endl;
+		return (1);
+	}
+	std::string	filename = argv[1];
+	std::string	s1 = argv[2];
+	std::string	s2 = argv[3];
 
-    public:
-        void            announce();
-        void            randomChump(std::string name);
-        static Zombie*  newZombie(std::string name);
-
-        Zombie() : name("Zombie_1"){}
-        Zombie(std::string name) : name(name){}
-        ~Zombie();
-};
-
-#endif
+	return (0);
+}

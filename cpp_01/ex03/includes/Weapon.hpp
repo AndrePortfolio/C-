@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:33:25 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/05/15 14:06:05 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/05/17 17:16:18 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ class Weapon
 
     public:
         const std::string   &getType();
-        void                setType(std::string set_type);
+        void                setType(const std::string new_type);
         
-        Weapon(std::string type) : type(type){}
+        Weapon(std::string initialType) : type(initialType){}
         ~Weapon();
 };
 

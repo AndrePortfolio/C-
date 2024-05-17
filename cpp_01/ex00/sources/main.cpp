@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:55:56 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/05/15 10:13:31 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/05/17 19:09:30 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 int main(void)
 {
     Zombie zombie1;
-    Zombie *zombie2 = nullptr;
-    
+    Zombie *zombie2 = NULL;
+
     zombie1.announce();
     std::cout << std::endl;
 
     zombie2 = Zombie::newZombie("Zombie_2");
-        
+
     zombie2->announce();
-    
+
     std::cout << std::endl;
-    
+
     zombie1.randomChump("Zombie_3");
     std::cout << std::endl;
     zombie2->randomChump("Zombie_4");

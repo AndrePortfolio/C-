@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 20:27:32 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/05/15 11:05:05 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/05/17 11:44:20 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(void)
 {
-    Zombie  *zombie = nullptr;
+    Zombie  *zombie = NULL;
     int     nbr;
 
     nbr = 10;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 20:27:37 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/05/15 11:02:29 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/05/17 11:44:35 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Zombie* Zombie::zombieHorde(int N, std::string name)
 {
-    Zombie  *Horde = nullptr;
+    Zombie  *Horde = NULL;
 
     Horde = new Zombie[N];
     

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:53:58 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/05/14 00:18:55 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/05/17 12:10:49 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PhoneBook.hpp"
+#include <sstream>
 
 void    DiplayTable()
 {
@@ -40,22 +41,26 @@ void    PhoneBook::SearchContact(int contacts_nbr)
     std::cout << YELLOW << "  ---------------------------------------------" << RESET << std::endl << std::endl;
     
     while (true)
-    {        
+    {
         std::cout << "  Contact to display: ";
         std::getline(std::cin, line);
         line.erase(0, line.find_first_not_of(WHITE_SPACES));
         line.erase(line.find_last_not_of(WHITE_SPACES) + 1);
-        
+
         if (line.empty())
             continue; 
+
         i = 0;
         while (contacts_nbr > i)
         {
-            if (line == std::to_string(i))
-            {
+            std::stringstream ss;
+            ss << i;
+            std::string str_i = ss.str();
+
+            if (line == str_i) {
                 contacts[i].GetLongContact();
                 std::cout << std::endl;
-                return ;
+                return;
             }
             i++;
         }
