@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Replace.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:15:41 by andre-da          #+#    #+#             */
-/*   Updated: 2024/05/17 19:22:19 by andre-da         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:52:05 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 class Replace
 {
 	private:
-		/* data */
+		std::string type;
 
 	public:
-		Replace();
+		Replace(std::string type) : type(type){}
 		~Replace();
 };
 
