@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:48:33 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/08 17:03:02 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/07/09 21:08:40 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,18 @@ void	Replace::readFile()
 
 void	Replace::replaceAll()
 {
-	size_t	i = 0;
+	std::string	result;
+	size_t		i = 0;
+	size_t		pos;
 
-	while ((i = fileContent.find(s1, i)) != std::string::npos)
+	while ((pos = fileContent.find(s1, i)) != std::string::npos)
 	{
-		fileContent.replace(i, s1.length(), s2);
-		i += s2.length();
+		result.append(fileContent, i, pos - i);
+		result.append(s2);
+		i = pos + s1.length();
 	}
+	result.append(fileContent, i, std::string::npos);
+	fileContent = result;
 }
 
 void	Replace::writeFile()
