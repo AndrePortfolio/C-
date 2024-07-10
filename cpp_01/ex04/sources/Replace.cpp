@@ -6,11 +6,11 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:48:33 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/09 21:08:40 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/07/10 11:06:40 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Replace.h"
+#include "../includes/replace.h"
 
 Replace::Replace(std::string& inputFileName, std::string& s1, std::string& s2)
 {
@@ -22,7 +22,7 @@ Replace::Replace(std::string& inputFileName, std::string& s1, std::string& s2)
 
 void	Replace::readFile()
 {
-	std::ifstream	inputFile(inputFileName);
+	std::ifstream		inputFile(inputFileName);
 	std::stringstream	buffer;
 
 	if (!inputFile.is_open())

@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Replace.h                                          :+:      :+:    :+:   */
+/*   Harl.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 17:43:31 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/10 11:06:33 by andrealbuqu      ###   ########.fr       */
+/*   Created: 2024/07/10 12:14:30 by andrealbuqu       #+#    #+#             */
+/*   Updated: 2024/07/10 12:23:18 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REPLACE_H
-# define REPLACE_H
+#ifndef Harl_H
+# define Harl_H
 
 # include <iostream>
-# include <fstream>
-# include <sstream>
-# include <string>
-# include "replace.hpp"
+# include <cstring>
+# include "Harl.hpp"
+
+# define RED "\x1b[31;1m"
+# define GREEN "\x1b[32;1m"
+# define BLUE "\x1b[34;1m"
+# define CYAN "\x1b[36;1m"
+# define YELLOW "\033[33;1m"
+# define RESET "\x1b[0m"
 
 void	error_message(std::string str);
 

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Replace.h                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 17:43:31 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/10 11:06:33 by andrealbuqu      ###   ########.fr       */
+/*   Created: 2024/07/10 11:16:52 by andrealbuqu       #+#    #+#             */
+/*   Updated: 2024/07/10 12:07:37 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REPLACE_H
-# define REPLACE_H
+#include "../includes/Harl.h"
 
-# include <iostream>
-# include <fstream>
-# include <sstream>
-# include <string>
-# include "replace.hpp"
+int	main(void)
+{
+	Harl	isHarl;
 
-void	error_message(std::string str);
-
-#endif
+	isHarl.complain("debug");
+	isHarl.complain("info");
+	isHarl.complain("warning");
+	isHarl.complain("error");
+	isHarl.complain("unknown");
+}

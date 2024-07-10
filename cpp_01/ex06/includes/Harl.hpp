@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Replace.h                                          :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 17:43:31 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/10 11:06:33 by andrealbuqu      ###   ########.fr       */
+/*   Created: 2024/07/10 12:14:21 by andrealbuqu       #+#    #+#             */
+/*   Updated: 2024/07/10 12:14:37 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REPLACE_H
-# define REPLACE_H
+#ifndef Harl_HPP
+# define Harl_HPP
 
-# include <iostream>
-# include <fstream>
-# include <sstream>
-# include <string>
-# include "replace.hpp"
+# include "Harl.h"
 
-void	error_message(std::string str);
+class Harl
+{
+	private:
+		void	debug();
+		void	info();
+		void	warning();
+		void	error();
+
+	public:
+		Harl(){}
+		~Harl(){}
+		void	complain(std::string level);
+};
 
 #endif

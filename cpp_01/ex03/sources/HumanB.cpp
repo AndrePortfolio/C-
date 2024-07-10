@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:33:29 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/05/17 17:29:32 by andre-da         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:29:05 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 
 HumanB::~HumanB()
 {
-    std::cout << name << " died" << std::endl;
+	std::cout << name << " died" << std::endl;
 }
 
-void    HumanB::attack()
+void HumanB::attack()
 {
-    if (!weapon)
-    {
-        std::cout << name << " has no weapon" << std::endl;
-        return ;
-    }
-    std::cout << name << " attacks with their " << weapon->getType() << std::endl;
+	if (!weapon)
+	{
+		std::cout << name << " has no weapon" << std::endl;
+		return ;
+	}
+	std::cout << name << " attacks with their " << weapon->getType() << std::endl;
 }
 
-void    HumanB::grabWeapon(Weapon& type)
+void HumanB::grabWeapon(Weapon &type)
 {
-    weapon = &type;
+	weapon = &type;
 }
 
-void    HumanB::freeWeapon()
+void HumanB::freeWeapon()
 {
-    weapon = NULL;
+	weapon = NULL;
 }
