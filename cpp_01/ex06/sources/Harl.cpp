@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:14:54 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/07/10 12:24:41 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/07/11 11:58:01 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,28 @@ void	Harl::complain(std::string level)
 		}
 	}
 	std::cout << RED << "Unknown level: " << RESET << level << std::endl;
+}
+
+void	Harl::filter(std::string level)
+{
+	int	index = getLevelIndex(level);
+	
+	switch (index)
+	{
+		case 0:
+			complain("debug");
+			index++;
+		case 1:
+			complain("info");
+			index++;
+		case 2:
+			complain("warning");
+			index++;
+		case 3:
+			complain("error");
+			break ;
+		default:
+			std::cout << CYAN << "[ Probably complaining about insignificant problems ]" << RESET << std::endl;
+			break;
+	}
 }

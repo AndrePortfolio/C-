@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Filter.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 12:14:39 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/07/11 11:14:09 by andrealbuqu      ###   ########.fr       */
+/*   Created: 2024/07/11 11:42:00 by andrealbuqu       #+#    #+#             */
+/*   Updated: 2024/07/11 11:56:07 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Harl.h"
 
-void	error_message(std::string str)
+std::string	toLowerCase(const std::string& str)
 {
-	std::cerr << YELLOW << str << RESET << std::endl;
-	exit(1);
+	std::string result;
+
+	for (int i = 0; i < (int)str.size(); i++)
+		result += std::tolower(str[i]);
+		
+	return (result);
 }
 
-int	main(int argc, char *argv[])
+int getLevelIndex(const std::string &level)
 {
-	Harl		isHarl;
-
-	if (argc != 2)
-		error_message("[ Probably complaining about insignificant problems ]");
-	isHarl.filter(argv[1]);
+    std::string levels[] = {"debug", "info", "warning", "error"};
+	std::string	lowerCased = toLowerCase(level);
+	
+    for (int i = 0; i < 4; i++)
+	{
+        if (levels[i] == lowerCased)
+            return (i);
+    }
+    return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:14:21 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/07/10 12:14:37 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/07/11 11:04:05 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class Harl
 		Harl(){}
 		~Harl(){}
 		void	complain(std::string level);
+		void	filter(std::string level);
 };
 
 #endif
