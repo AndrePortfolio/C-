@@ -6,23 +6,29 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/11 15:13:28 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/07/15 17:19:45 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
+# include "libft.h"
+
 class Fixed
 {
-    private:
-    
+	private:
+		int value;
+		static const int bits = 8;
 
-    public:
-        Fixed();
-        Fixed(const Fixed& other);
-        Fixed& operator=(const Fixed& other);
-        ~Fixed();
+	public:
+		Fixed();
+		Fixed(const Fixed &copy);
+		Fixed &operator=(const Fixed &other);
+		~Fixed();
+	
+		void setRawBits(int const raw);
+		int getRawBits(void) const;
 };
 
 #endif

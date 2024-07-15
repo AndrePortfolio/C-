@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:39:49 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/07/15 17:20:15 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/07/15 17:18:22 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Contructors & Destructor -------------------------*/
-/*----------------------------------------------------------------------------*/\
+/*----------------------------------------------------------------------------*/
 
 Fixed::Fixed() : value(0)									// Default Contructor
 {
@@ -26,6 +26,20 @@ Fixed::Fixed(const Fixed &copy)									// Copy Contructor
 	std::cout << "Copy constructor called" << std::endl;
 
 	*this = copy;
+}
+
+Fixed::Fixed(const int num)										// Int Contructor
+{
+	std::cout << "Int constructor called" << std::endl;
+
+	this->value = num << bits;
+}
+
+Fixed::Fixed(const float num)									// Float Contructor
+{
+	std::cout << "Float constructor called" << std::endl;
+
+	this->value = roundf(num * (1 << bits));
 }
 
 Fixed::~Fixed()														// Destructor
@@ -55,4 +69,24 @@ void Fixed::setRawBits(int const raw)
 int Fixed::getRawBits(void) const
 {
 	return (this->value);
+}
+
+int Fixed::toInt(void) const
+{
+	return ((this->value) >> bits);
+}
+
+float Fixed::toFloat(void) const
+{
+	return ((float)(this->value) / (1 << bits));
+}
+/*----------------------------------------------------------------------------*/
+/*------------------------------ Friend Function -----------------------------*/
+/*----------------------------------------------------------------------------*/
+
+std::ostream &operator<<(std::ostream &out, const Fixed &obj)
+{
+	out << obj.toFloat();
+
+	return (out);
 }
