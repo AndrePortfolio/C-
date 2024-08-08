@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/16 12:43:02 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/07/16 15:22:21 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 
 # include "libft.h"
 
-class Fixed
+class ClapTrap
 {
 	private:
-		int					value;
-		static const int	bits = 8;
+		std::string	name;
+		int			hitPoints;
+		int			energyPoints;
+		int			attackDamage;
 
 	public:
-		Fixed();
-		Fixed(const Fixed &copy);
-		Fixed(const int num);
-		Fixed(const float num);
-		~Fixed();
+		ClapTrap();
+		ClapTrap(std::string name);
+		ClapTrap(const ClapTrap &copy);
+		ClapTrap& operator=(const ClapTrap &other);
+		~ClapTrap();
 
-		Fixed &operator=(const Fixed &other);
-
-		void	setRawBits(int const raw);
-		int		getRawBits(void) const;
-		float	toFloat(void) const;
-		int		toInt(void) const;
+		void		attack(const std::string &target);
+		void		takeDamage(unsigned int amount);
+		void		beRepaired(unsigned int amount);
+		std::string	getName()const;
+		int			getHitPoints()const;
+		int			getEnergyPoints()const;
+		void		setAttackDamage(int damage);
+		int			getAttackDamage()const;
 };
-
-std::ostream &operator<<(std::ostream &out, const Fixed &obj);
 
 #endif

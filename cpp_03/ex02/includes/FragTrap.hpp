@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/16 12:43:02 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/07/19 11:29:30 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-# include "libft.h"
+# include "FragTrap.h"
 
-class Fixed
+class FragTrap : public ClapTrap
 {
-	private:
-		int					value;
-		static const int	bits = 8;
-
 	public:
-		Fixed();
-		Fixed(const Fixed &copy);
-		Fixed(const int num);
-		Fixed(const float num);
-		~Fixed();
+		FragTrap();
+		FragTrap(std::string name);
+		FragTrap(const FragTrap &copy);
+		~FragTrap();
 
-		Fixed &operator=(const Fixed &other);
+		FragTrap	&operator=(const FragTrap &other);
 
-		void	setRawBits(int const raw);
-		int		getRawBits(void) const;
-		float	toFloat(void) const;
-		int		toInt(void) const;
+		void		attack(const std::string &target);
+		void		takeDamage(unsigned int amount);
+		void		beRepaired(unsigned int amount);
+		std::string	getName()const;
+		int			getHitPoints()const;
+		int			getEnergyPoints()const;
+		void		setAttackDamage(int damage);
+		int			getAttackDamage()const;
+		void		guardGate();
 };
-
-std::ostream &operator<<(std::ostream &out, const Fixed &obj);
 
 #endif

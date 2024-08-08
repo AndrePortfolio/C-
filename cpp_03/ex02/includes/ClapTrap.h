@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.h                                           :+:      :+:    :+:   */
+/*   ClapTrap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 12:33:22 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/07/19 11:14:30 by andrealbuqu      ###   ########.fr       */
+/*   Created: 2024/07/19 11:22:30 by andrealbuqu       #+#    #+#             */
+/*   Updated: 2024/07/19 11:38:49 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_H
-# define WEAPON_H
+#ifndef CLAPTRAP_H
+# define CLAPTRAP_H
 
-# include <iostream>
-# include "HumanA.h"
-# include "HumanB.h"
+# include "libft.h"
+# include "ScavTrap.h"
+# include "FragTrap.h"
 
 #endif

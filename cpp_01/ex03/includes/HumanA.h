@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:33:11 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/07/08 15:53:29 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/07/19 11:14:02 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define HUMANA_H
 
 # include "HumanA.hpp"
-# include "Weapon.h"
+# include "Weapon.hpp"
 
 #endif
