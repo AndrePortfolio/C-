@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/19 11:20:33 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/08/22 14:54:04 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#include "../includes/ScalarConverter.hpp"
 
-# include "FragTrap.h"
-
-class FragTrap : public ClapTrap
+int main(int argc, char *argv[])
 {
-	public:
-		FragTrap();
-		FragTrap(std::string name);
-		FragTrap(const FragTrap &copy);
-		~FragTrap();
+	if (argc != 2)
+	{
+		std::cerr << "Usage: " << argv[0] << " <literal>" << std::endl;
+		return (1);
+	}
+	std::string literal = argv[1];
 
-		FragTrap	&operator=(const FragTrap &other);
-
-		void		attack(const std::string &target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
-		std::string	getName()const;
-		int			getHitPoints()const;
-		int			getEnergyPoints()const;
-		void		setAttackDamage(int damage);
-		int			getAttackDamage()const;
-		void		guardGate();
-};
-
-#endif
+	ScalarConverter::convert(literal);
+	return (0);
+}

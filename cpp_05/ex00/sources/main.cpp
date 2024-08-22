@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/19 11:20:33 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/08/20 11:37:08 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#include "../includes/Bureaucrat.hpp"
 
-# include "FragTrap.h"
-
-class FragTrap : public ClapTrap
+int main()
 {
-	public:
-		FragTrap();
-		FragTrap(std::string name);
-		FragTrap(const FragTrap &copy);
-		~FragTrap();
+	try
+	{
+		Bureaucrat b1("b1", 1);
 
-		FragTrap	&operator=(const FragTrap &other);
+		std::cout << b1 << std::endl;
+		b1.decrementGrade(25);
+		std::cout << b1 << std::endl;
+		b1.incrementGrade(10);
+		std::cout << b1 << std::endl;
 
-		void		attack(const std::string &target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
-		std::string	getName()const;
-		int			getHitPoints()const;
-		int			getEnergyPoints()const;
-		void		setAttackDamage(int damage);
-		int			getAttackDamage()const;
-		void		guardGate();
-};
+		Bureaucrat b2("b2", 1);
 
-#endif
+		std::cout << b2 << std::endl;
+		b2.incrementGrade(150);
+		std::cout << b2 << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	return (0);
+}

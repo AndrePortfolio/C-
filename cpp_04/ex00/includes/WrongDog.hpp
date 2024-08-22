@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   WrongDog.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/19 11:20:33 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/08/19 15:35:59 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef WRONGDOG_HPP
+# define WRONGDOG_HPP
 
-# include "FragTrap.h"
+# include "WrongAnimal.hpp"
 
-class FragTrap : public ClapTrap
+class WrongDog : public WrongAnimal
 {
 	public:
-		FragTrap();
-		FragTrap(std::string name);
-		FragTrap(const FragTrap &copy);
-		~FragTrap();
+		WrongDog();
+		WrongDog(const WrongDog &copy);
+		WrongDog& operator=(const WrongDog &other);
+		~WrongDog();
 
-		FragTrap	&operator=(const FragTrap &other);
-
-		void		attack(const std::string &target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
-		std::string	getName()const;
-		int			getHitPoints()const;
-		int			getEnergyPoints()const;
-		void		setAttackDamage(int damage);
-		int			getAttackDamage()const;
-		void		guardGate();
+	void	makeSound() const;
 };
 
 #endif

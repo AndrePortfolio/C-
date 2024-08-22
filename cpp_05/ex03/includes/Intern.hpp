@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/19 11:20:33 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/08/21 18:00:30 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef INTERN_HPP
+# define INTERN_HPP
 
-# include "FragTrap.h"
+# include "libft.h"
 
-class FragTrap : public ClapTrap
+class AForm;
+
+class Intern
 {
+	private:
+		static std::string	validNames[3];
+		static AForm*		(*formConstructors[3])(const std::string &target);
+
 	public:
-		FragTrap();
-		FragTrap(std::string name);
-		FragTrap(const FragTrap &copy);
-		~FragTrap();
+		Intern();
+		Intern(const Intern &copy);
+		Intern& operator=(const Intern &other);
+		~Intern();
 
-		FragTrap	&operator=(const FragTrap &other);
+		AForm	*makeForm(const std::string &formName, const std::string &target);
 
-		void		attack(const std::string &target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
-		std::string	getName()const;
-		int			getHitPoints()const;
-		int			getEnergyPoints()const;
-		void		setAttackDamage(int damage);
-		int			getAttackDamage()const;
-		void		guardGate();
+		class FormNotFoundException : public std::exception
+		{
+			const char	*what() const throw();
+		};
 };
 
 #endif
