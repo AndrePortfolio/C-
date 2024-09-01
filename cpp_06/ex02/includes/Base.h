@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   Base.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/24 10:38:29 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/08/24 11:19:47 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_HPP
-# define SERIALIZER_HPP
+#ifndef BASE_H
+# define BASE_H
 
-# include "libft.h"
-# include "Data.hpp"
+# include "Base.hpp"
+# include "A.hpp"
+# include "B.hpp"
+# include "C.hpp"
 
-class Serializer
-{
-	private:
-		Serializer();
-		Serializer(const Serializer &copy);
-		Serializer& operator=(const Serializer &other);
-		~Serializer();
-
-	public:
-		static uintptr_t	serialize(Data* ptr);
-		static Data*		deserialize(uintptr_t raw);
-};
+Base*	generate();
+void	identify(Base* p);
+void	identify(Base& p);
 
 #endif

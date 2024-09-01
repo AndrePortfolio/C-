@@ -1,4 +1,4 @@
-NAME = serialization
+NAME = array
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 CC = c++
 COMPRESS = ar rcs
@@ -6,7 +6,7 @@ RM = rm -rf
 
 OBJ_DIR = objects
 SRC_DIR = sources
-S = main Serializer
+S = main
 SRC = $(addprefix $(SRC_DIR)/,$(addsuffix .cpp, $(S)))
 OBJ = $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.cpp=.o)))
 

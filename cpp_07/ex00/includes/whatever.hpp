@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/24 10:38:29 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/08/24 12:30:56 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_HPP
-# define SERIALIZER_HPP
+#ifndef WHATEVER_HPP
+# define WHATEVER_HPP
 
 # include "libft.h"
-# include "Data.hpp"
 
-class Serializer
+template <typename value>
+void	swap(value &a, value &b)
 {
-	private:
-		Serializer();
-		Serializer(const Serializer &copy);
-		Serializer& operator=(const Serializer &other);
-		~Serializer();
+	value	tmp;
 
-	public:
-		static uintptr_t	serialize(Data* ptr);
-		static Data*		deserialize(uintptr_t raw);
-};
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+
+template <typename value>
+value	min(const value &a, const value &b)
+{
+	return ((a < b) ? a : b);
+}
+
+template <typename value>
+value	max(const value &a, const value &b)
+{
+	return ((a > b) ? a : b);
+}
 
 #endif

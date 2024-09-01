@@ -6,40 +6,29 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/24 10:53:45 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/08/24 12:39:29 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Serializer.hpp"
+#include "../includes/whatever.hpp"
 
 int main(void)
 {
-	Data	data;
+	int	a = 2;
+	int	b = 3;
 
-	data.age = 24;
-	data.contact = 917383917;
-	data.name = "John";
-	data.profession = "Firefighter";
+	::swap( a, b );
+	std::cout << "a = " << a << ", b = " << b << std::endl;
+	std::cout << "min(a, b) = " << ::min(a, b) << std::endl;
+	std::cout << "max(a, b) = " << ::max(a, b) << std::endl;
 
-	std::cout << CYAN << "\nORIGINAL DATA\n" << RESET
-		<< "Age: " << data.age << "\n"
-		<< "Contact: " << data.contact << "\n"
-		<< "Name: " << data.name << "\n"
-		<< "Profession: " << data.profession << "\n";
+	std::string c = "chaine1";
+	std::string d = "chaine2";
 
-	uintptr_t	raw;
-
-	raw = Serializer::serialize(&data);
-
-	Data	*deserializedData;
-
-	deserializedData = Serializer::deserialize(raw);
-
-	std::cout << GREEN << "\nDESERIALIZED DATA\n" << RESET
-		<< "Age: " << deserializedData->age << "\n"
-		<< "Contact: " << deserializedData->contact << "\n"
-		<< "Name: " << deserializedData->name << "\n"
-		<< "Profession: " << deserializedData->profession << "\n\n";
+	::swap(c, d);
+	std::cout << "c = " << c << ", d = " << d << std::endl;
+	std::cout << "min(c, d) = " << ::min(c, d) << std::endl;
+	std::cout << "max(c, d) = " << ::max(c, d) << std::endl;
 
 	return (0);
 }

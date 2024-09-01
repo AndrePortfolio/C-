@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/23 11:08:44 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/08/24 10:52:20 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ Serializer &Serializer::operator=(const Serializer &other)
 	{
 		*this = other;
 	}
+	
 	std::cout << "Copy Assignment Operator called" << std::endl;
 	return *this;
 }
@@ -53,10 +54,10 @@ Serializer &Serializer::operator=(const Serializer &other)
 
 uintptr_t	Serializer::serialize(Data *ptr)
 {
-	
+	return (reinterpret_cast<uintptr_t>(ptr));
 }
 
 Data*	Serializer::deserialize(uintptr_t raw)
 {
-
+	return (reinterpret_cast<Data*>(raw));
 }
