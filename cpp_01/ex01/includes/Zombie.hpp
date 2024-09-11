@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 20:27:30 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/05/15 10:59:30 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/11 16:25:47 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,18 @@
 
 # include "Zombie.h"
 
-class   Zombie
+class Zombie
 {
-    private:
-        std::string name;
+	private:
+		std::string name;
 
-    public:
-        void            announce();
-        static Zombie*  zombieHorde(int N, std::string name);
-        void            set_name(std::string name);
-        
-        Zombie() : name("Zombie_1"){}
-        Zombie(std::string name) : name(name){}
-        ~Zombie();
+	public:
+		void	announce();
+		void	set_name(std::string name);
+
+		Zombie();
+		Zombie(std::string name);
+		~Zombie();
 };
 
 #endif

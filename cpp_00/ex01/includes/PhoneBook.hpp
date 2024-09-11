@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 20:10:35 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/05/13 20:41:37 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/11 15:44:04 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 class PhoneBook
 {
-public:
-    Contact contacts[MAX_CONTACTS];
+	public:
+		Contact	contacts[MAX_CONTACTS];
 
-    void    SearchContact(int i);
+	void	SearchContact(int i);
 };
 
 #endif

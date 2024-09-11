@@ -6,7 +6,7 @@ RM = rm -rf
 
 OBJ_DIR = objects
 SRC_DIR = sources
-S = Zombie newZombie randomChump main
+S = Zombie randomChump newZombie main
 SRC = $(addprefix $(SRC_DIR)/,$(addsuffix .cpp, $(S)))
 OBJ = $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.cpp=.o)))
 

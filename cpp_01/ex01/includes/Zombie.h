@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 20:27:28 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/05/14 21:25:05 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/11 16:09:49 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,9 @@
 # define CYAN "\x1b[36;1m"
 # define YELLOW "\033[33;1m"
 # define RESET "\x1b[0m"
+
+class Zombie;
+
+Zombie *zombieHorde(int N, std::string name);
 
 #endif

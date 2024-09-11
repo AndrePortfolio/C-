@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:55:59 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/05/14 19:25:09 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/11 16:00:56 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,10 @@
 # define CYAN "\x1b[36;1m"
 # define YELLOW "\033[33;1m"
 # define RESET "\x1b[0m"
+
+class Zombie;
+
+Zombie*	newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif

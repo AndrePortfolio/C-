@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:55:56 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/07/11 12:03:16 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/11 16:02:52 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 
 int	main(void)
 {
-	Zombie	zombie1;
-	Zombie	*zombie2 = NULL;
+	Zombie*	zombie = newZombie("Ben");
 
-	zombie1.announce();
-	std::cout << std::endl;
-	zombie2 = Zombie::newZombie("Zombie_2");
-	zombie2->announce();
-	std::cout << std::endl;
-	zombie1.randomChump("Zombie_3");
-	std::cout << std::endl;
-	zombie2->randomChump("Zombie_4");
-	std::cout << std::endl;
-	delete zombie2;
+	zombie->announce();
+	randomChump("John");
+	randomChump("Mark");
+	zombie->announce();
+
+	delete zombie;
 	return (0);
 }
