@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/15 17:01:57 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/12 10:45:11 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(void)
 {
-	Fixed a;
-	Fixed const b(Fixed(5.05f) * Fixed(2));
+	Fixed		a;
+	Fixed const	b(Fixed(5.05f) * Fixed(2));
 
 	std::cout << a << std::endl;
 	std::cout << ++a << std::endl;

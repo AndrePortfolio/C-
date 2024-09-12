@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/15 17:19:45 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/12 10:41:20 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 class Fixed
 {
 	private:
-		int value;
-		static const int bits = 8;
+		int					value;
+		static const int	bits = 8;
 
 	public:
 		Fixed();
 		Fixed(const Fixed &copy);
 		Fixed &operator=(const Fixed &other);
 		~Fixed();
-	
-		void setRawBits(int const raw);
-		int getRawBits(void) const;
+
+		void	setRawBits(int const raw);
+		int		getRawBits(void) const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 11:31:29 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/07/15 17:16:03 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/12 10:44:49 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 /*--------------------------------------------------------------------------------------*/
 
 Fixed::Fixed() : value(0){}											// Default Contructor
+
 Fixed::~Fixed(){}													// Destructor
+
 Fixed::Fixed(const Fixed &copy)										// Copy Contructor
 {
 	*this = copy;
