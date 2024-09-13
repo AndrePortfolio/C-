@@ -6,11 +6,13 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/19 11:26:17 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/13 12:49:42 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ClapTrap.h"
+#include "../includes/ClapTrap.hpp"
+#include "../includes/ScavTrap.hpp"
+#include "../includes/FragTrap.hpp"
 
 int main(void)
 {

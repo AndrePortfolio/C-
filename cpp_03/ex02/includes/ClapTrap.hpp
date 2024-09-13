@@ -6,14 +6,14 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/07/19 11:27:31 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/13 12:39:31 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 
-# include "ClapTrap.h"
+# include "libft.h"
 
 class ClapTrap
 {

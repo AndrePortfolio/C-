@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/19 11:48:55 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/13 12:17:47 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ ClapTrap::ClapTrap(std::string name)								// Contructor
 
 ClapTrap::ClapTrap(const ClapTrap &copy)						// Copy Contructor
 {
-	this->name = copy.name;
-	this->hitPoints = copy.hitPoints;
-	this->energyPoints = copy.energyPoints;
-	this->attackDamage = copy.attackDamage;
+	*this = copy;
 
 	std::cout << "Copy contructor called" << std::endl;
 }
