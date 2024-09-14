@@ -17,8 +17,9 @@
 # include <fstream>
 # include <sstream>
 # include <string>
+# include <cstdlib>
 # include "Replace.hpp"
 
-void	error_message(std::string str);
+void	error_message(const char* str);
 
 #endif

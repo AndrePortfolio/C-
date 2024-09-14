@@ -37,7 +37,8 @@ void	Harl::complain(std::string level)
 	void (Harl::*actions[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	std::string	levels[] = {"debug", "info", "warning", "error"};
 
-	for (size_t i = 0; i < level.length(); i++)
+
+	for (size_t i = 0; i < levels->length(); i++)
 	{
 		if (levels[i].compare(level) == 0)
 		{

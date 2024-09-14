@@ -12,7 +12,7 @@
 
 #include "../includes/Replace.h"
 
-void	error_message(std::string str)
+void	error_message(const char* str)
 {
 	std::cerr << str << std::endl;
 	exit(1);

@@ -22,7 +22,7 @@ Replace::Replace(std::string& inputFileName, std::string& s1, std::string& s2)
 
 void	Replace::readFile()
 {
-	std::ifstream		inputFile(inputFileName);
+	std::ifstream		inputFile(inputFileName.c_str());
 	std::stringstream	buffer;
 
 	if (!inputFile.is_open())
@@ -51,7 +51,7 @@ void	Replace::replaceAll()
 
 void	Replace::writeFile()
 {
-	std::ofstream	outputFile(outputFileName);
+	std::ofstream	outputFile(outputFileName.c_str());
 
 	if (!outputFile.is_open())
 		error_message("Failed to create the output file");

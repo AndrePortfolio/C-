@@ -1,4 +1,4 @@
-NAME = Harl
+NAME = harl
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 CC = c++
 COMPRESS = ar rcs

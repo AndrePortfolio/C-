@@ -12,7 +12,7 @@
 
 #include "../includes/Harl.h"
 
-void	error_message(std::string str)
+void	error_message(const char* str)
 {
 	std::cerr << YELLOW << str << RESET << std::endl;
 	exit(1);
@@ -20,7 +20,7 @@ void	error_message(std::string str)
 
 int	main(int argc, char *argv[])
 {
-	Harl		isHarl;
+	Harl	isHarl;
 
 	if (argc != 2)
 		error_message("[ Probably complaining about insignificant problems ]");
