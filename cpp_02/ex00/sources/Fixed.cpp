@@ -23,9 +23,9 @@ Fixed::Fixed() : value(0)									// Default Contructor
 
 Fixed::Fixed(const Fixed &copy)									// Copy Contructor
 {
-	std::cout << "Copy constructor called" << std::endl;
-
 	*this = copy;
+
+	std::cout << "Copy constructor called" << std::endl;
 }
 
 Fixed::~Fixed()														// Destructor

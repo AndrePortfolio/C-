@@ -80,7 +80,7 @@ void	ClapTrap::attack(const std::string &target)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	if (amount > 0 && amount <= INT_MAX)
+	if (amount > 0 && (int)amount <= std::numeric_limits<int>::max())
 		hitPoints -= amount;
 	if (hitPoints < 0)
 		hitPoints = 0;
@@ -91,7 +91,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	if (amount > 0 && amount <= INT_MAX)
+	if (amount > 0 && (int)amount <= std::numeric_limits<int>::max())
 		hitPoints = amount;
 	std::cout	<< "ClapTrap " << name
 				<< " repaires hitself by " << amount

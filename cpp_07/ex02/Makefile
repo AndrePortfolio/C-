@@ -1,6 +1,6 @@
 NAME = array
-CFLAGS = -Wall -Wextra -Werror -std=c++98
-CC = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
 COMPRESS = ar rcs
 RM = rm -rf
 
@@ -20,14 +20,14 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(CYAN)make$(RESET)   $@ $(GREEN)[OK]$(RESET)"
 
 $(OBJ_DIR):
 	@mkdir -p $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJ_DIR)
