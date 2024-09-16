@@ -16,16 +16,18 @@
 /*------------------------- Constructors & Destructor -----------------------*/
 /*----------------------------------------------------------------------------*/
 
-Dog::Dog()
+Dog::Dog() : Animal()
 {
-	type = "dog";
 	std::cout << "Dog Default Constructor called" << std::endl;
+
+	type = "dog";
 }
 
-Dog::Dog(const Dog &copy)
+Dog::Dog(const Dog &copy) : Animal(copy)
 {
-	this->type = copy.type;
 	std::cout << "Dog Copy Constructor called" << std::endl;
+
+	this->type = copy.type;
 }
 
 Dog::~Dog()
@@ -39,11 +41,12 @@ Dog::~Dog()
 
 Dog &Dog::operator=(const Dog &other)
 {
+	std::cout << "Dog Copy Assignment Operator called" << std::endl;
+
 	if (this != &other) {
 		this->type = other.type;
 	}
-	std::cout << "Dog Copy Assignment Operator called" << std::endl;
-	return *this;
+	return (*this);
 }
 
 /*----------------------------------------------------------------------------*/

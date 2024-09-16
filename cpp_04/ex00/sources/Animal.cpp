@@ -23,9 +23,9 @@ Animal::Animal() : type("Unknown animal type")				// Default Contructor
 
 Animal::Animal(const Animal &copy)								// Copy Contructor
 {
-	this->type = copy.type;
-
 	std::cout << "Animal Copy contructor called" << std::endl;
+
+	this->type = copy.type;
 }
 
 Animal::~Animal(void)												// Destructor
@@ -39,11 +39,11 @@ Animal::~Animal(void)												// Destructor
 
 Animal	&Animal::operator=(const Animal &other)
 {
+	std::cout << "Animal Copy Assignment operator  called" << std::endl;
 	if (this != &other)
 	{
 		this->type = other.type;
 	}
-	std::cout << "Animal Copy Assignment operator  called" << std::endl;
 	return (*this);
 }
 

@@ -16,16 +16,18 @@
 /*------------------------- Constructors & Destructor -----------------------*/
 /*----------------------------------------------------------------------------*/
 
-Cat::Cat()
+Cat::Cat() : Animal()
 {
-	type = "cat";
 	std::cout << "Cat Default Constructor called" << std::endl;
+
+	type = "cat";
 }
 
-Cat::Cat(const Cat &copy)
+Cat::Cat(const Cat &copy) : Animal(copy)
 {
-	this->type = copy.type;
 	std::cout << "Cat Copy Constructor called" << std::endl;
+
+	this->type = copy.type;
 }
 
 Cat::~Cat()
@@ -39,12 +41,13 @@ Cat::~Cat()
 
 Cat &Cat::operator=(const Cat &other)
 {
+	std::cout << "Cat Copy Assignment Operator called" << std::endl;
+
 	if (this != &other)
 	{
 		this->type = other.type;
 	}
-	std::cout << "Cat Copy Assignment Operator called" << std::endl;
-	return *this;
+	return (*this);
 }
 
 /*----------------------------------------------------------------------------*/

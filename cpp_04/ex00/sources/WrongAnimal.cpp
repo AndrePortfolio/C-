@@ -23,9 +23,9 @@ WrongAnimal::WrongAnimal() : type("Unknown WrongAnimal type")	// Default Contruc
 
 WrongAnimal::WrongAnimal(const WrongAnimal &copy)					// Copy Contructor
 {
-	this->type = copy.type;
-
 	std::cout << "WrongAnimal Copy contructor called" << std::endl;
+
+	this->type = copy.type;
 }
 
 WrongAnimal::~WrongAnimal(void)										// Destructor
@@ -39,11 +39,12 @@ WrongAnimal::~WrongAnimal(void)										// Destructor
 
 WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &other)
 {
+	std::cout << "WrongAnimal Copy Assignment operator  called" << std::endl;
+	
 	if (this != &other)
 	{
 		this->type = other.type;
 	}
-	std::cout << "WrongAnimal Copy Assignment operator  called" << std::endl;
 	return (*this);
 }
 

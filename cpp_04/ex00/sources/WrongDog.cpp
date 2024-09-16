@@ -18,14 +18,16 @@
 
 WrongDog::WrongDog()
 {
-	type = "WrongDog";
 	std::cout << "WrongDog Default Constructor called" << std::endl;
+
+	type = "WrongDog";
 }
 
 WrongDog::WrongDog(const WrongDog &copy)
 {
-	this->type = copy.type;
 	std::cout << "WrongDog Copy Constructor called" << std::endl;
+
+	this->type = copy.type;
 }
 
 WrongDog::~WrongDog()
@@ -39,11 +41,12 @@ WrongDog::~WrongDog()
 
 WrongDog &WrongDog::operator=(const WrongDog &other)
 {
+	std::cout << "WrongDog Copy Assignment Operator called" << std::endl;
+
 	if (this != &other) {
 		this->type = other.type;
 	}
-	std::cout << "WrongDog Copy Assignment Operator called" << std::endl;
-	return *this;
+	return (*this);
 }
 
 /*----------------------------------------------------------------------------*/
