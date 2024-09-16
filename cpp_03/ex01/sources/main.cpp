@@ -36,5 +36,10 @@ int main(void)
 
 	std::cout	<< cp2.getName() << " has " << cp2.getHitPoints() << " Hitpoints\n"
 				<< std::endl;
+
+	cp1.guardGate();
+	cp2.guardGate();
+	std::cout << std::endl;
+
 	return (0);
 }

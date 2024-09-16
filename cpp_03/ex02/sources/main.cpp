@@ -40,5 +40,10 @@ int main(void)
 
 	std::cout	<< cp2.getName() << " has " << cp2.getHitPoints() << " Hitpoints\n"
 				<< std::endl;
+
+	fun.guardGate();
+	cp2.highFivesGuys();
+	std::cout << std::endl;
+
 	return (0);
 }
