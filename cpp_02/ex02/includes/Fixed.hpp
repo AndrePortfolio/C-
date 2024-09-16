@@ -18,8 +18,8 @@
 class Fixed
 {
 	private:
-		int value;
-		static const int bits = 8;
+		int					value;
+		static const int	bits = 8;
 
 	public:
 		Fixed();

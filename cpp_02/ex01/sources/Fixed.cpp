@@ -57,6 +57,14 @@ Fixed &Fixed::operator=(const Fixed &other)			// Copy Assignment Operator
 	this->value = other.getRawBits();
 	return (*this);
 }
+
+std::ostream &operator<<(std::ostream &out, const Fixed &obj)	// Insertion Operator
+{
+	out << obj.toFloat();
+
+	return (out);
+}
+
 /*----------------------------------------------------------------------------*/
 /*----------------------------- Member Functions -----------------------------*/
 /*----------------------------------------------------------------------------*/
@@ -79,14 +87,4 @@ int Fixed::toInt(void) const
 float Fixed::toFloat(void) const
 {
 	return ((float)(this->value) / (1 << bits));
-}
-/*----------------------------------------------------------------------------*/
-/*------------------------------ Friend Function -----------------------------*/
-/*----------------------------------------------------------------------------*/
-
-std::ostream &operator<<(std::ostream &out, const Fixed &obj)
-{
-	out << obj.toFloat();
-
-	return (out);
 }
