@@ -13,10 +13,12 @@
 #ifndef CAT_HPP
 # define CAT_HPP
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+# include "libft.h"
 
-class Cat : public Animal
+class AAnimal;
+class Brain;
+
+class Cat : public AAnimal
 {
 	private:
 		Brain	*brain;

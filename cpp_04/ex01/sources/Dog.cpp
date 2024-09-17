@@ -10,30 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Dog.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Constructors & Destructor -----------------------*/
 /*----------------------------------------------------------------------------*/
 
-Dog::Dog() : brain(new Brain())
+Dog::Dog() : Animal(), brain(new Brain())
 {
-	type = "dog";
 	std::cout << "Dog Default Constructor called" << std::endl;
+
+	type = "dog";
 }
 
-Dog::Dog(const Dog &copy) : Animal(copy)
+Dog::Dog(const Dog &copy) : Animal(copy), brain(new Brain(*copy.brain))
 {
-	this->brain = new Brain(*copy.brain);
-
 	std::cout << "Dog Copy Constructor called" << std::endl;
+
+	this->type = copy.type;
 }
 
 Dog::~Dog()
 {
-	delete (brain);
-
 	std::cout << "Dog Destructor called" << std::endl;
+
+	delete (this->brain);
 }
 
 /*----------------------------------------------------------------------------*/
@@ -42,13 +43,14 @@ Dog::~Dog()
 
 Dog &Dog::operator=(const Dog &other)
 {
+	std::cout << "Dog Copy Assignment Operator called" << std::endl;
+
 	if (this != &other)
 	{
 		this->type = other.type;
 		delete (this->brain);
 		this->brain = new Brain(*other.brain);
 	}
-	std::cout << "Dog Copy Assignment Operator called" << std::endl;
 	return (*this);
 }
 
@@ -59,4 +61,9 @@ Dog &Dog::operator=(const Dog &other)
 void	Dog::makeSound() const
 {
 	std::cout << "Wuffffff Wuffffff" << std::endl;
+}
+
+Brain*	Dog::getBrain() const
+{
+	return (brain);
 }

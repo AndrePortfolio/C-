@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Animal.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Contructors & Destructor -------------------------*/
 /*----------------------------------------------------------------------------*/
 
-Animal::Animal() : type("Unknown animal type")				// Default Contructor
+Animal::Animal() : type("animal")							// Default Contructor
 {
 	std::cout << "Animal Default Contructor called" << std::endl;
 }
@@ -53,7 +53,7 @@ Animal	&Animal::operator=(const Animal &other)
 
 void	Animal::makeSound() const
 {
-	std::cout << "Animal made a sound" << std::endl;
+	std::cout << "??????? ???????" << std::endl;
 }
 
 std::string	Animal::getType() const

@@ -13,8 +13,10 @@
 #ifndef DOG_HPP
 # define DOG_HPP
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+# include "libft.h"
+
+class Animal;
+class Brain;
 
 class Dog : public Animal
 {
@@ -28,6 +30,7 @@ class Dog : public Animal
 		~Dog();
 
 	void	makeSound() const;
+	Brain	*getBrain() const;
 };
 
 #endif

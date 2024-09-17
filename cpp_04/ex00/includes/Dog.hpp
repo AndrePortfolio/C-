@@ -13,7 +13,9 @@
 #ifndef DOG_HPP
 # define DOG_HPP
 
-# include "Animal.hpp"
+# include "libft.h"
+
+class Animal;
 
 class Dog : public Animal
 {
@@ -23,7 +25,7 @@ class Dog : public Animal
 		Dog& operator=(const Dog &other);
 		~Dog();
 
-	void	makeSound() const;
+		void	makeSound() const;
 };
 
 #endif

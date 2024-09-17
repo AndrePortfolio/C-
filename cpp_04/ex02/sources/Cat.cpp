@@ -10,29 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cat.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Constructors & Destructor -----------------------*/
 /*----------------------------------------------------------------------------*/
 
-Cat::Cat() : brain(new Brain())
+Cat::Cat() : AAnimal(), brain(new Brain())
 {
-	type = "cat";
 	std::cout << "Cat Default Constructor called" << std::endl;
+
+	type = "cat";
 }
 
-Cat::Cat(const Cat &copy) : Animal(copy)
+Cat::Cat(const Cat &copy) : AAnimal(copy), brain(new Brain(*copy.brain))
 {
-	this->brain = new Brain(*copy.brain);
-
 	std::cout << "Cat Copy Constructor called" << std::endl;
+
+	this->type = copy.type;
 }
 
 Cat::~Cat()
 {
-	delete (this->brain);
 	std::cout << "Cat Destructor called" << std::endl;
+
+	delete (this->brain);
 }
 
 /*----------------------------------------------------------------------------*/
@@ -41,13 +43,14 @@ Cat::~Cat()
 
 Cat &Cat::operator=(const Cat &other)
 {
+	std::cout << "Cat Copy Assignment Operator called" << std::endl;
+	
 	if (this != &other)
 	{
 		this->type = other.type;
 		delete (this->brain);
 		this->brain = new Brain(*other.brain);
 	}
-	std::cout << "Cat Copy Assignment Operator called" << std::endl;
 	return (*this);
 }
 
@@ -57,5 +60,5 @@ Cat &Cat::operator=(const Cat &other)
 
 void	Cat::makeSound() const
 {
-	std::cout << "Miawwww Miawwwwww" << std::endl;
+	std::cout << "Miawwwww Miawwwww" << std::endl;
 }

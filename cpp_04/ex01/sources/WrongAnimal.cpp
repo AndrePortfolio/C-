@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/WrongAnimal.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Contructors & Destructor -------------------------*/
 /*----------------------------------------------------------------------------*/
 
-WrongAnimal::WrongAnimal() : type("Unknown WrongAnimal type")	// Default Contructor
+WrongAnimal::WrongAnimal() : type("WrongAnimal")	// Default Contructor
 {
 	std::cout << "WrongAnimal Default Contructor called" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &copy)					// Copy Contructor
 {
-	*this = copy;
-
 	std::cout << "WrongAnimal Copy contructor called" << std::endl;
+
+	*this = copy;
 }
 
 WrongAnimal::~WrongAnimal(void)										// Destructor
@@ -39,11 +39,12 @@ WrongAnimal::~WrongAnimal(void)										// Destructor
 
 WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &other)
 {
+	std::cout << "WrongAnimal Copy Assignment operator  called" << std::endl;
+	
 	if (this != &other)
 	{
 		this->type = other.type;
 	}
-	std::cout << "WrongAnimal Copy Assignment operator  called" << std::endl;
 	return (*this);
 }
 

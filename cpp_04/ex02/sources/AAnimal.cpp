@@ -1,57 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongDog.cpp                                       :+:      :+:    :+:   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/19 16:24:36 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/08/19 16:17:28 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/WrongDog.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
-/*------------------------- Constructors & Destructor -----------------------*/
+/*------------------------- Contructors & Destructor -------------------------*/
 /*----------------------------------------------------------------------------*/
 
-WrongDog::WrongDog()
+AAnimal::AAnimal() : type("animal")							// Default Contructor
 {
-	type = "WrongDog";
-	std::cout << "WrongDog Default Constructor called" << std::endl;
+	std::cout << "Animal Default Contructor called" << std::endl;
 }
 
-WrongDog::WrongDog(const WrongDog &copy)
+AAnimal::AAnimal(const AAnimal &copy)							// Copy Contructor
 {
 	*this = copy;
 
-	std::cout << "WrongDog Copy Constructor called" << std::endl;
+	std::cout << "Animal Copy contructor called" << std::endl;
 }
 
-WrongDog::~WrongDog()
+AAnimal::~AAnimal(void)												// Destructor
 {
-	std::cout << "WrongDog Destructor called" << std::endl;
+	std::cout << "Animal Destructor has been called" << std::endl;
 }
 
 /*----------------------------------------------------------------------------*/
 /*--------------------------------- Operator ---------------------------------*/
 /*----------------------------------------------------------------------------*/
 
-WrongDog &WrongDog::operator=(const WrongDog &other)
+AAnimal	&AAnimal::operator=(const AAnimal &other)
 {
-	if (this != &other) {
+	if (this != &other)
+	{
 		this->type = other.type;
 	}
-	std::cout << "WrongDog Copy Assignment Operator called" << std::endl;
+	std::cout << "Animal Copy Assignment operator  called" << std::endl;
 	return (*this);
 }
 
 /*----------------------------------------------------------------------------*/
-/*------------------------------ Member Functions ----------------------------*/
+/*----------------------------- Member Functions -----------------------------*/
 /*----------------------------------------------------------------------------*/
 
-void	WrongDog::makeSound() const
+void	AAnimal::makeSound() const
 {
-	std::cout << "Wuffffff Wuffffff" << std::endl;
+	std::cout << "??????? ???????" << std::endl;
+}
+
+std::string	AAnimal::getType() const
+{
+	return (this->type);
 }

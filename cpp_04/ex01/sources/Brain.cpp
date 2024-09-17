@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Brain.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Constructors & Destructor -----------------------*/
@@ -19,13 +19,16 @@
 Brain::Brain()
 {
 	std::cout << "Brain Default Constructor called" << std::endl;
+
+	for (size_t i = 0; i < 100; i++)
+		this->ideas[i] = "No idea";
 }
 
 Brain::Brain(const Brain &copy)
 {
-	*this = copy;
-
 	std::cout << "Brain Copy Constructor called" << std::endl;
+
+	*this = copy;
 }
 
 Brain::~Brain()
@@ -39,12 +42,13 @@ Brain::~Brain()
 
 Brain &Brain::operator=(const Brain &other)
 {
+	std::cout << "Brain Copy Assignment operator called" << std::endl;
+
 	if (this != &other)
 	{
 		for (size_t i = 0; i < 100; i++)
 			this->ideas[i] = other.ideas[i];
 	}
-	std::cout << "Brain Copy Assignment Operator called" << std::endl;
 	return (*this);
 }
 
@@ -52,3 +56,12 @@ Brain &Brain::operator=(const Brain &other)
 /*------------------------------ Member Functions ----------------------------*/
 /*----------------------------------------------------------------------------*/
 
+std::string	Brain::getIdea(int index) const
+{
+	return (ideas[index]);
+}
+
+void	Brain::setIdea(int index, const std::string &idea)
+{
+	ideas[index] = idea;
+}

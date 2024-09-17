@@ -10,55 +10,50 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Animal.hpp"
-#include "../includes/Dog.hpp"
-#include "../includes/Cat.hpp"
-#include "../includes/WrongAnimal.hpp"
-#include "../includes/WrongCat.hpp"
+#include "../includes/libft.h"
 
 int main()
 {
-	const	Animal* meta = new Animal();
+	const	Animal* animal = new Animal();
 	std::cout << "\n";
 
-	const	Animal* j = new Dog();
+	const	Animal* dog = new Dog();
 	std::cout << "\n";
 
-	const	Animal* i = new Cat();
+	const	Animal* cat = new Cat();
 	std::cout << "\n";
 
-	std::cout << CYAN << j->getType() << " " << std::endl;
-	j->makeSound(); //will output the dog sound!
-	std::cout << GREEN << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-
-	std::cout << YELLOW;
-	meta->makeSound();
+	std::cout << CYAN << dog->getType() << "    -> ";
+	dog->makeSound(); //will output the dog sound!
+	std::cout << GREEN << cat->getType() << "    -> ";
+	cat->makeSound(); //will output the cat sound!
+	std::cout << YELLOW << animal->getType() << " -> ";
+	animal->makeSound();
 
 	std::cout << RESET << "\n";
-	delete (meta);
+	delete (animal);
 	std::cout << "\n";
-	delete (j);
+	delete (dog);
 	std::cout << "\n";
-	delete (i);
+	delete (cat);
 
 	std::cout << std::endl << RED
 		<< "Now the same with the Wrong classes\n"
 		<< RESET << std::endl;
 
-	const	WrongAnimal* wrongMeta = new WrongAnimal();
+	const	WrongAnimal* wrongAnimal = new WrongAnimal();
 	std::cout << "\n";
-	const	WrongAnimal* wrongI = new WrongCat();
+	const	WrongAnimal* wrongCat = new WrongCat();
 	std::cout << "\n";
 
-	std::cout << GREEN << wrongI->getType() << " " << std::endl;
-	wrongI->makeSound(); //will not output the cat sound!
-	std::cout << YELLOW;
-	wrongMeta->makeSound();
+	std::cout << GREEN << wrongCat->getType() << "    -> ";
+	wrongCat->makeSound(); //will output the cat sound!
+	std::cout << YELLOW << wrongAnimal->getType() << " -> ";
+	wrongAnimal->makeSound();
 
 	std::cout << RESET << "\n";
-	delete (wrongMeta);
+	delete (wrongAnimal);
 	std::cout << std::endl;
-	delete (wrongI);
+	delete (wrongCat);
 	return (0);
 }

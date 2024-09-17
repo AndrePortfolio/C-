@@ -13,7 +13,9 @@
 #ifndef WRONGCAT_HPP
 # define WRONGCAT_HPP
 
-# include "WrongAnimal.hpp"
+# include "libft.h"
+
+class WrongAnimal;
 
 class WrongCat : public WrongAnimal
 {

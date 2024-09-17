@@ -25,6 +25,13 @@
 # include <limits>			// For numeric limits
 # include <typeinfo>		// For type information
 
+# include "Animal.hpp"
+# include "Brain.hpp"
+# include "Cat.hpp"
+# include "Dog.hpp"
+# include "WrongAnimal.hpp"
+# include "WrongCat.hpp"
+
 # define RED	"\x1b[31;1m"
 # define GREEN	"\x1b[32;1m"
 # define BLUE	"\x1b[34;1m"

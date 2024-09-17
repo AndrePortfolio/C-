@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cat.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Constructors & Destructor -----------------------*/
@@ -56,5 +56,5 @@ Cat &Cat::operator=(const Cat &other)
 
 void	Cat::makeSound() const
 {
-	std::cout << "Miawwww Miawwwwww" << std::endl;
+	std::cout << "Miawwwww Miawwwww" << std::endl;
 }

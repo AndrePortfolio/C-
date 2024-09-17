@@ -6,7 +6,7 @@ RM = rm -rf
 
 OBJ_DIR = objects
 SRC_DIR = sources
-S = main Animal Dog Cat WrongAnimal WrongDog WrongCat Brain
+S = main Animal Dog Cat WrongAnimal WrongCat Brain
 SRC = $(addprefix $(SRC_DIR)/,$(addsuffix .cpp, $(S)))
 OBJ = $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.cpp=.o)))
 

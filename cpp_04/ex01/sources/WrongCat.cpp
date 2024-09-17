@@ -10,23 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/WrongCat.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Constructors & Destructor -----------------------*/
 /*----------------------------------------------------------------------------*/
 
-WrongCat::WrongCat()
+WrongCat::WrongCat() : WrongAnimal()
 {
-	type = "WrongCat";
 	std::cout << "WrongCat Default Constructor called" << std::endl;
+
+	type = "WrongCat";
 }
 
-WrongCat::WrongCat(const WrongCat &copy)
+WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal(copy)
 {
-	*this = copy;
-
 	std::cout << "WrongCat Copy Constructor called" << std::endl;
+
+	*this = copy;
 }
 
 WrongCat::~WrongCat()
@@ -40,11 +41,12 @@ WrongCat::~WrongCat()
 
 WrongCat &WrongCat::operator=(const WrongCat &other)
 {
+	std::cout << "WrongCat Copy Assignment Operator called" << std::endl;
+
 	if (this != &other)
 	{
 		this->type = other.type;
 	}
-	std::cout << "WrongCat Copy Assignment Operator called" << std::endl;
 	return (*this);
 }
 

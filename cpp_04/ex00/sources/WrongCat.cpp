@@ -10,20 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/WrongCat.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Constructors & Destructor -----------------------*/
 /*----------------------------------------------------------------------------*/
 
-WrongCat::WrongCat()
+WrongCat::WrongCat() : WrongAnimal()
 {
 	std::cout << "WrongCat Default Constructor called" << std::endl;
 	
 	type = "WrongCat";
 }
 
-WrongCat::WrongCat(const WrongCat &copy)
+WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal(copy)
 {
 	std::cout << "WrongCat Copy Constructor called" << std::endl;
 
@@ -56,5 +56,5 @@ WrongCat &WrongCat::operator=(const WrongCat &other)
 
 void	WrongCat::makeSound() const
 {
-	std::cout << "Miawwww Miawwwwww" << std::endl;
+	std::cout << "Miawwwww Miawwwww" << std::endl;
 }

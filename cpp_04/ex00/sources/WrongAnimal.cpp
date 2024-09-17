@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/WrongAnimal.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Contructors & Destructor -------------------------*/
 /*----------------------------------------------------------------------------*/
 
-WrongAnimal::WrongAnimal() : type("Unknown WrongAnimal type")	// Default Contructor
+WrongAnimal::WrongAnimal() : type("WrongAnimal")	// Default Contructor
 {
 	std::cout << "WrongAnimal Default Contructor called" << std::endl;
 }
@@ -54,7 +54,7 @@ WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &other)
 
 void	WrongAnimal::makeSound() const
 {
-	std::cout << "WrongAnimal made a sound" << std::endl;
+	std::cout << "???????? ????????" << std::endl;
 }
 
 std::string	WrongAnimal::getType() const
