@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Form.hpp"
+#include "../includes/libft.h"
+
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Constructors & Destructor -----------------------*/
@@ -18,29 +19,29 @@
 
 Form::Form() : name("Default"), isSigned(false), signGrade(1), executeGrade(1)
 {
-	std::cout << "Default Constructor called" << std::endl;
+	std::cout << "Form Default Constructor called" << std::endl;
 }
 
 Form::Form(std::string name, int signGrade, int executeGrade)
 	: name(name), isSigned(false), signGrade(signGrade), executeGrade(executeGrade)
 {
+	std::cout << "Form Constructor called" << std::endl;
+
 	if (signGrade < 1 || executeGrade < 1)
 		throw GradeTooHighException();
 	else if (signGrade > 150 || executeGrade > 150)
 		throw GradeTooLowException();
-
-	std::cout << "Constructor called" << std::endl;
 }
 
 Form::Form(const Form &copy) : name(copy.name), isSigned(copy.isSigned),
 	signGrade(copy.signGrade), executeGrade(copy.executeGrade)
 {
-	std::cout << "Copy Constructor called" << std::endl;
+	std::cout << "Form Copy Constructor called" << std::endl;
 }
 
 Form::~Form()
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "Form Destructor called" << std::endl;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -49,10 +50,10 @@ Form::~Form()
 
 Form &Form::operator=(const Form &other)
 {
+	std::cout << "Form Copy Assignment operator called" << std::endl;
+
 	if (this != &other)
 		isSigned = other.isSigned;
-
-	std::cout << "Copy Assignment Operator called" << std::endl;
 	return (*this);
 }
 

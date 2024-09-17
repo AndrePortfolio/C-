@@ -25,6 +25,9 @@
 # include <limits>			// For numeric limits
 # include <typeinfo>		// For type information
 
+# include "Bureaucrat.hpp"
+# include "Form.hpp"
+
 # define RED	"\x1b[31;1m"
 # define GREEN	"\x1b[32;1m"
 # define BLUE	"\x1b[34;1m"

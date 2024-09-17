@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Bureaucrat.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Constructors & Destructor -----------------------*/
@@ -23,19 +23,19 @@ Bureaucrat::Bureaucrat() : name("Default"), grade(1)
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
 {
+	std::cout << "Constructor called" << std::endl;
+
 	if (grade < 1)
 		throw GradeTooHighException();
 	else if (grade > 150)
 		throw GradeTooLowException();
-
-	std::cout << "Constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy)
 {
-	*this = copy;
-
 	std::cout << "Copy Constructor called" << std::endl;
+
+	*this = copy;
 }
 
 Bureaucrat::~Bureaucrat()
@@ -49,6 +49,8 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &other)
 {
+	std::cout << "Copy Assignment Operator called" << std::endl;
+
 	if (this != &other)
 	{
 		if (other.grade < 1)
@@ -57,7 +59,6 @@ Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &other)
 			throw GradeTooLowException();
 		this->grade = other.grade;
 	}
-	std::cout << "Copy Assignment Operator called" << std::endl;
 	return (*this);
 }
 
@@ -65,7 +66,6 @@ std::ostream	&operator<<(std::ostream &out, const Bureaucrat &bureaucrat)
 {
 	out << bureaucrat.getName() << ", bureaucrat grade "
 		<< bureaucrat.getGrade() << "." << std::endl;
-
 	return (out);
 }
 

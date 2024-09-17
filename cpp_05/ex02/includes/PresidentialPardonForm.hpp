@@ -14,7 +14,8 @@
 # define PRESIDENTIALPARDONFORM_HPP
 
 # include "libft.h"
-# include "AForm.hpp"
+
+class AForm;
 
 class PresidentialPardonForm : public AForm
 {

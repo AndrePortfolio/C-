@@ -14,7 +14,8 @@
 # define ROBOTOMYREQUESTFORM_HPP
 
 # include "libft.h"
-# include "AForm.hpp"
+
+class AFrom;
 
 class RobotomyRequestForm : public AForm
 {

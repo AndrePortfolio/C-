@@ -14,7 +14,6 @@
 # define FORM_HPP
 
 # include "libft.h"
-# include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
@@ -27,21 +26,18 @@ class Form
 		const int			executeGrade;
 
 	public:
-	// Constructors & Destructor
 		Form();
 		Form(std::string name, int signGrade, int executeGrade);
 		Form(const Form &copy);
 		Form& operator=(const Form &other);
 		~Form();
 
-	// Getters & Member Functions
 		const std::string	&getName() const;
 		bool				getSigned() const;
 		int					getGradeToSign() const;
 		int					getGradeToExecute() const;
 		void				beSigned(const Bureaucrat &bureaucrat);
 
-	// Exception Classes
 		class GradeTooHighException : public std::exception
 		{
 			public:
@@ -54,7 +50,6 @@ class Form
 		};
 };
 
-// Overloaded insertion operator
 std::ostream &operator<<(std::ostream &out, const Form &form);
 
 #endif

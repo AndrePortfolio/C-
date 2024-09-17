@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Intern.hpp"
-#include "../includes/ShrubberyCreationForm.hpp"
-#include "../includes/RobotomyRequestForm.hpp"
-#include "../includes/PresidentialPardonForm.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Constructors & Destructor -----------------------*/

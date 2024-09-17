@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Bureaucrat.hpp"
+#include "../includes/libft.h"
 
 int main()
 {
@@ -24,10 +24,11 @@ int main()
 		b1.incrementGrade(10);
 		std::cout << b1 << std::endl;
 
-		Bureaucrat b2("b2", 1);
+		Bureaucrat b2("b2", 75);
 
 		std::cout << b2 << std::endl;
-		b2.incrementGrade(150);
+		b2.incrementGrade(75);
+		// b2.decrementGrade(76);
 		std::cout << b2 << std::endl;
 	}
 	catch (std::exception &e)

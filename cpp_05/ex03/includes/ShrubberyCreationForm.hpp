@@ -14,7 +14,8 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 # include "libft.h"
-# include "AForm.hpp"
+
+class AForm;
 
 class ShrubberyCreationForm : public AForm
 {
@@ -28,7 +29,7 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm &other);
 		~ShrubberyCreationForm();
 
-	void	execute(Bureaucrat const &executor) const;
+	void			execute(Bureaucrat const &executor) const;
 	static AForm	*create(const std::string &target);
 };
 

@@ -14,7 +14,8 @@
 # define ROBOTOMYREQUESTFORM_HPP
 
 # include "libft.h"
-# include "AForm.hpp"
+
+class AForm;
 
 class RobotomyRequestForm : public AForm
 {
@@ -28,7 +29,7 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm& operator=(const RobotomyRequestForm &other);
 		~RobotomyRequestForm();
 
-	void	execute(Bureaucrat const &executor) const;
+	void			execute(Bureaucrat const &executor) const;
 	static AForm	*create(const std::string &target);
 };
 

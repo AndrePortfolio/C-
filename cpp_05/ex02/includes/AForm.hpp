@@ -14,7 +14,6 @@
 # define AFORM_HPP
 
 # include "libft.h"
-# include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
@@ -27,14 +26,12 @@ class AForm
 		const int			executeGrade;
 
 	public:
-	// Constructors & Destructor
 		AForm();
 		AForm(std::string name, int signGrade, int executeGrade);
 		AForm(const AForm &copy);
 		AForm& operator=(const AForm &other);
 		virtual ~AForm();
 
-	// Getters & Member Functions
 		const std::string	&getName() const;
 		bool				getSigned() const;
 		int					getGradeToSign() const;
@@ -43,7 +40,6 @@ class AForm
 		virtual void		execute(Bureaucrat const &executor) const = 0;
 		void				requirements(const Bureaucrat &executor) const;
 
-	// Exception Classes
 		class GradeTooHighException : public std::exception
 		{
 			public:
@@ -68,7 +64,6 @@ class AForm
 		};
 };
 
-// Overloaded insertion operator
 std::ostream &operator<<(std::ostream &out, const AForm &aForm);
 
 #endif

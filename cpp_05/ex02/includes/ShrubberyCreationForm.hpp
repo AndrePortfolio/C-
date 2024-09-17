@@ -14,7 +14,8 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 # include "libft.h"
-# include "AForm.hpp"
+
+class AFrom;
 
 class ShrubberyCreationForm : public AForm
 {

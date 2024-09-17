@@ -10,47 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Bureaucrat.hpp"
-#include "../includes/PresidentialPardonForm.hpp"
-#include "../includes/RobotomyRequestForm.hpp"
-#include "../includes/ShrubberyCreationForm.hpp"
-#include "../includes/Intern.hpp"
+#include "../includes/libft.h"
 
 int main()
 {
-	srand(std::time(0));
+	srand(time(0));
 	try
 	{
 		Intern		intern;
 		Bureaucrat	boss("Boss", 1);
 
-		std::cout << std::endl << CYAN << "VALID FORMS" << RESET << std::endl;
+		std::cout << std::endl << GREEN << "SHRUBBERY" << RESET << std::endl;
 		AForm	*form1 = intern.makeForm("Shrubbery Creation", "Garden");
-		AForm	*form2 = intern.makeForm("Robotomy Request", "Bender");
-		AForm	*form3 = intern.makeForm("Presidential Pardon", "Zaphod Beeblebrox");
-
-		std::cout << std::endl;
+		std::cout << "\n";
 		if (form1)
 		{
 			boss.signForm(*form1);
 			boss.executeForm(*form1);
 			delete form1;
 		}
-		std::cout << std::endl;
+		std::cout << std::endl << GREEN << "ROBOTOMY" << RESET << std::endl;
+		AForm	*form2 = intern.makeForm("Robotomy Request", "Bender");
+		std::cout << "\n";
 		if (form2)
 		{
 			boss.signForm(*form2);
 			boss.executeForm(*form2);
 			delete form2;
 		}
-		std::cout << std::endl;
+		std::cout << std::endl << GREEN << "PRESIDENTIAL" << RESET << std::endl;
+		AForm	*form3 = intern.makeForm("Presidential Pardon", "Zaphod Beeblebrox");
+		std::cout << "\n";
 		if (form3)
 		{
 			boss.signForm(*form3);
 			boss.executeForm(*form3);
 			delete form3;
 		}
-		std::cout << std::endl << RED << "INVALID FORMS" << RESET << std::endl;
+		std::cout << std::endl << RED << "INVALID FORM" << RESET << std::endl;
 		AForm* invalidForm = intern.makeForm("invalid form name", "Nobody");
 		if (invalidForm)
 			delete invalidForm;

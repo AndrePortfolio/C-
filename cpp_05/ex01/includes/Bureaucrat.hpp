@@ -14,7 +14,6 @@
 # define BUREAUCRAT_HPP
 
 # include "libft.h"
-# include "Form.hpp"
 
 class Form;
 
@@ -25,21 +24,18 @@ class Bureaucrat
 		int					grade;
 
 	public:
-		// Constructors & Destructor
 		Bureaucrat();
 		Bureaucrat(std::string name, int grade);
 		Bureaucrat(const Bureaucrat &copy);
 		Bureaucrat& operator=(const Bureaucrat &other);
 		~Bureaucrat();
 
-		// Getters & Member Functions
 		const std::string	&getName() const;
 		int					getGrade() const;
 		void				incrementGrade(int amount);
 		void				decrementGrade(int amount);
 		void				signForm(Form &form);
 
-	// Exception Classes
 		class GradeTooHighException : public std::exception
 		{
 			public:
@@ -52,7 +48,6 @@ class Bureaucrat
 		};
 };
 
-// Overloaded insertion operator
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat);
 
 #endif
