@@ -23,7 +23,8 @@
 # include <exception>		// For standard exception classes
 # include <stdexcept>		// For standard exception classes (runtime_error, etc.)
 # include <limits>			// For numeric limits
-# include <typeinfo>		// For type information
+
+# include "whatever.hpp"
 
 # define RED	"\x1b[31;1m"
 # define GREEN	"\x1b[32;1m"
