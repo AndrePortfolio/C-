@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ScalarConverter.hpp"
+#include "../includes/libft.h"
 
 int main(int argc, char *argv[])
 {

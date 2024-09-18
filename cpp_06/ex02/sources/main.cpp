@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Base.h"
+#include "../includes/libft.h"
 
 int main(void)
 {
 	Base*	basePtr = generate();
 
-	std::cout << CYAN << "Identifying by pointer: " << RESET;
+	std::cout << CYAN << "\nIdentifying by pointer:   " << RESET;
 	identify(basePtr);
 	
 	std::cout << GREEN << "Identifying by reference: " << RESET;

@@ -13,7 +13,9 @@
 #ifndef B_HPP
 # define B_HPP
 
-# include "Base.hpp"
+# include "libft.h"
+
+class Base;
 
 class B : public Base{};
 

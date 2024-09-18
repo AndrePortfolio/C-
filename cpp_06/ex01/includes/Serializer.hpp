@@ -14,7 +14,6 @@
 # define SERIALIZER_HPP
 
 # include "libft.h"
-# include "Data.hpp"
 
 class Serializer
 {

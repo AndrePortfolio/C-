@@ -10,28 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ScalarConverter.hpp"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*------------------------- Constructors & Destructor -----------------------*/
 /*----------------------------------------------------------------------------*/
 
-ScalarConverter::ScalarConverter()
-{
-	std::cout << "ScalarConverter Default Constructor called" << std::endl;
-}
+ScalarConverter::ScalarConverter(){}
 
 ScalarConverter::ScalarConverter(const ScalarConverter &copy)
 {
 	*this = copy;
-
-	std::cout << "ScalarConverter Copy Constructor called" << std::endl;
 }
 
-ScalarConverter::~ScalarConverter()
-{
-	std::cout << "ScalarConverter Destructor called" << std::endl;
-}
+ScalarConverter::~ScalarConverter(){}
 
 /*----------------------------------------------------------------------------*/
 /*--------------------------------- Operator ---------------------------------*/
@@ -39,11 +31,7 @@ ScalarConverter::~ScalarConverter()
 
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 {
-	if (this != &other)
-	{
-		*this = other;
-	}
-	std::cout << "ScalarConverter Copy Assignment Operator called" << std::endl;
+	(void)other;
 	return (*this);
 }
 
@@ -57,7 +45,7 @@ static void	printChar(double value)
 		|| value > std::numeric_limits<char>::max())
 		std::cout << "char:   impossible\n";
 	else if (!std::isprint(static_cast<char>(value)))
-		std::cout << "char:   not displayable\n";
+		std::cout << "char:   Non displayable\n";
 	else
 		std::cout << "char:   '" << static_cast<char>(value) << "'\n";
 }
@@ -80,7 +68,7 @@ static void	printFloat(double value)
 	else if (value < -std::numeric_limits<float>::max() || value > std::numeric_limits<float>::max())
 		std::cout << "float:  impossible\n";
 	else
-		std::cout << "float:  " << static_cast<float>(value) << "f\n";
+		std::cout << "float:  " << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f\n";
 }
 
 static void	printDouble(double value)
@@ -93,16 +81,32 @@ static void	printDouble(double value)
 		std::cout << "double: " << value  << "\n";
 }
 
+static bool	isSpecial(const std::string &literal)
+{
+	std::string specials[7] = {"nan", "inf", "inff", "-inf", "+inf", "-inff", "+inff"};
+
+	for (size_t i = 0; i < 7; i++)
+	{
+		if (specials[i] == literal)
+			return (true);
+	}
+	return (false);
+}
+
 void	ScalarConverter::convert(const std::string &literal)
 {
-	double	value = std::strtod(literal.c_str(), nullptr);
+	double	value;
 
-	if (literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0]))
-		value = static_cast<double>(literal[0]);
-	else if (literal.find_first_not_of("+-0123456789.f") != std::string::npos)
+	value = strtod(literal.c_str(), NULL);
+	if (!isSpecial(literal))
 	{
-		std::cerr << "Invalid literal" << std::endl;
-		return ;
+		if (literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0]))
+			value = static_cast<double>(literal[0]);
+		else if (literal.find_first_not_of("+-0123456789.f") != std::string::npos )
+		{
+			std::cerr << "Invalid literal" << std::endl;
+			return ;
+		}
 	}
 	printChar(value);
 	printInt(value);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Base.h"
+#include "../includes/libft.h"
 
 /*----------------------------------------------------------------------------*/
 /*-------------------------------- Destructor --------------------------------*/
@@ -37,8 +37,7 @@ Base*	generate(void)
 		return (new B());
 	else if (random == 2)
 		return (new C());
-
-	return (nullptr);
+	return (NULL);
 }
 
 void	identify(Base* p)
@@ -57,22 +56,22 @@ void	identify(Base& p)
 	{
 		(void)dynamic_cast<A&>(p);
 
-		std::cout << "A\n";
+		std::cout << "A\n\n";
 	}
-	catch(std::bad_cast& e) {}
+	catch(std::exception &e) {}
 	try
 	{
 		(void)dynamic_cast<B&>(p);
 
-		std::cout << "B\n";
+		std::cout << "B\n\n";
 	}
-	catch(std::bad_cast& e) {}
+	catch(std::exception &e) {}
 	try
 	{
 		(void)dynamic_cast<C&>(p);
 
-		std::cout << "C\n";
+		std::cout << "C\n\n";
 	}
-	catch(std::bad_cast& e) {}
+	catch(std::exception &e) {}
 
 }
