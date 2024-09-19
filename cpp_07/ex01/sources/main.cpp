@@ -14,29 +14,64 @@
 
 int main(void)
 {
-	std::cout << GREEN << "\nINT ARRAY\n" << RESET;
+	const int arraySize = 10;
 
-	int	array[10] = {0, 1, 2, 3, 4 ,5 ,6 ,7 ,8 ,9};
-	for (size_t i = 0; i < 10; i++)
+	std::cout << GREEN << "\nINT ARRAY    -> " << RESET << "|";
+
+	int	iArray[arraySize] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106};
+	for (size_t i = 0; i < arraySize; i++)
 	{
-		if (array[i] != '\0')		
-			std::cout << array[i] << " ";
+		if (iArray[i] != '\0')		
+			std::cout << std::setw(5) << iArray[i] << "| ";
 	}
-	std::cout << GREEN << "\nAPPLY ITER\n" << RESET;
-	iter(array, 10, print);
 
-	std::cout << CYAN << "\n\nCHAR ARRAY\n" << RESET;
+	std::cout << YELLOW << "\nprint:          " << RESET << "|";
+	iter(iArray, arraySize, print);
+	std::cout << YELLOW << "\nconvertToChar:  " << RESET << "|";
+	iter(iArray, arraySize, convertToChar);
+	std::cout << YELLOW << "\nconvertToFloat: " << RESET << "|";
+	iter(iArray, arraySize, convertToFloat);
 
-	char	cArray[4] = {'a', 'b', 'c', 'd'};
-	for (size_t i = 0; i < 4; i++)
+	std::cout << GREEN << "\n\nCHAR ARRAY   -> " << RESET << "|";
+
+	char	cArray[arraySize] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+	for (size_t i = 0; i < arraySize; i++)
 	{
 		if (cArray[i] != '\0')
-			std::cout << cArray[i] << " ";
+			std::cout << std::setw(5) << cArray[i] << "| ";
 	}
 
-	std::cout << CYAN << "\nAPPLY ITER\n" << RESET;
+	std::cout << YELLOW << "\nprint:          " << RESET << "|";
+	iter(cArray, arraySize, print);
+	std::cout << YELLOW << "\nconvertToInt:   " << RESET << "|";
+	iter(cArray, arraySize, convertToInt);
+	std::cout << YELLOW << "\nconvertToFloat: " << RESET << "|";
+	iter(cArray, arraySize, convertToFloat);
 
-	iter(cArray, 4, print);
+	std::cout << GREEN << "\n\nFLOAT ARRAY ->  " << RESET << "|";
+
+	float	fArray[arraySize] = {97.0f, 98.1f, 99.2f, 100.3f, 101.4f, 102.5f, 103.6f, 104.7f, 105.8f, 106.9f};
+	for (size_t i = 0; i < arraySize; i++)
+	{
+		if (fArray[i] != '\0')
+			std::cout << std::setw(5) << fArray[i] << "| ";
+	}
+
+	std::cout << YELLOW << "\nprint:          " << RESET << "|";
+	iter(fArray, arraySize, print);
+	std::cout << YELLOW << "\nconvertToInt:   " << RESET << "|";
+	iter(fArray, arraySize, convertToInt);
+	std::cout << YELLOW << "\nconvertToChar:  " << RESET << "|";
+	iter(fArray, arraySize, convertToChar);
+
+	std::cout << GREEN << "\n\nSTRING ARRAY -> " << RESET << "|";
+	std::string	sArray[arraySize] = {"hey", "this", "is", "fun", "I", "love", "to", "make", "42", "tests"};
+	for (size_t i = 0; i < arraySize; i++)
+	{
+		std::cout << std::setw(5) << sArray[i] << "| ";
+	}
+	std::cout << YELLOW << "\nprint:          " << RESET << "|";
+	iter(sArray, arraySize, print);
 
 	std::cout << "\n" << std::endl;
 	return (0);

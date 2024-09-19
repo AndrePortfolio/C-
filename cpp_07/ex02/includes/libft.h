@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/24 20:04:43 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/19 18:10:09 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define CYAN	"\x1b[36;1m"
 # define YELLOW	"\033[33;1m"
 # define RESET	"\x1b[0m"
+
+# include "Array.hpp"
 
 void errorMessage(std::string message);
 
