@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/25 12:18:16 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/19 19:06:17 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # include <stdexcept>		// For standard exception classes (runtime_error, etc.)
 # include <limits>			// For numeric limits
 # include <typeinfo>		// For type information
+# include <vector>          // For using the vector container
+# include <list>            // For using the list container
+# include <map>             // For using the map container
+# include <algorithm>       // For using algorithms like sort, find, etc.
+
+# include "easyfind.hpp"
 
 # define RED	"\x1b[31;1m"
 # define GREEN	"\x1b[32;1m"

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/25 12:49:21 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/19 19:10:44 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/easyfind.hpp"
+#include "../includes/libft.h"
 
 int	main(void)
 {
@@ -45,11 +45,9 @@ int	main(void)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
-	// Test for not found case
 	try
 	{
 		easyfind(vec, 6);
-			// This will throw an exception
 	}
 	catch (const std::exception &e)
 	{
