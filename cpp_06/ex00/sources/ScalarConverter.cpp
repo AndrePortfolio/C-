@@ -93,6 +93,16 @@ static bool	isSpecial(const std::string &literal)
 	return (false);
 }
 
+static bool	doubleSIgn(const std::string &literal)
+{
+	if ((literal[0] == '-' && literal[1] == '+') 
+		|| (literal[0] == '-' && literal[1] == '-')
+		|| (literal[0] == '+' && literal[1] == '+')
+		|| (literal[0] == '+' && literal[1] == '-'))
+		return (true);
+	return (false);
+}
+
 void	ScalarConverter::convert(const std::string &literal)
 {
 	double	value;
@@ -102,7 +112,7 @@ void	ScalarConverter::convert(const std::string &literal)
 	{
 		if (literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0]))
 			value = static_cast<double>(literal[0]);
-		else if (literal.find_first_not_of("+-0123456789.f") != std::string::npos )
+		else if (literal.find_first_not_of("+-0123456789.f") != std::string::npos || doubleSIgn(literal))
 		{
 			std::cerr << "Invalid literal" << std::endl;
 			return ;
