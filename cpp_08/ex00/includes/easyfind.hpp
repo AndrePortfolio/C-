@@ -13,16 +13,16 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-# include "libft.h"
+# include "headers.h"
 
 template<typename T>
-typename T::iterator	easyfind(T &container, int value)
+int	easyfind(T container, int value)
 {
-	typename T::iterator	match = std::find(container.begin(), container.end(), value);
+	typename T::iterator it = std::find(container.begin(), container.end(), value);
 
-	if (match == container.end())
-		throw std::runtime_error("Value not found in the container");
-	return (match);
+	if (it == container.end())
+		throw std::runtime_error("NOT FOUND");
+	return (*it);
 }
 
 #endif

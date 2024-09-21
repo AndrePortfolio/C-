@@ -10,48 +10,57 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "headers.h"
 
 int	main(void)
 {
-	// Test with std::vector
-	std::vector<int> vec;
-	vec.push_back(1);
-	vec.push_back(2);
-	vec.push_back(3);
-	vec.push_back(4);
-	vec.push_back(5);
+	int arr[] = {1, 2, 3, 4, 5};
+	std::vector<int> vec(arr, arr + sizeof(arr) / sizeof(int));
+	std::cout << GREEN << "\nVECTOR CONTAINER -> " << RESET;
+	for (size_t i = 0; i < sizeof(arr) / sizeof(int); i++)
+		std::cout << arr[i] << " ";
 	try
 	{
-		std::vector<int>::iterator it = easyfind(vec, 3);
-		std::cout << "Found value: " << *it << std::endl;
+		int	searchValue = 3;
+		std::cout << "\nSearch value: " << searchValue << "\n";
+		std::cout << "Found  value: " << easyfind(vec, searchValue) << std::endl;
 	}
 	catch (const std::exception &e)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
-	// Test with std::list
-	std::list<int> lst;
-	lst.push_back(10);
-	lst.push_back(20);
-	lst.push_back(30);
-	lst.push_back(40);
+
+	std::cout << GREEN << "\nLIST CONTAINER ---> " << RESET;
+	int arr2[] = {10, 20, 30, 40, 50};
+	std::list<int> lst(arr2, arr2 + sizeof(arr2) / sizeof(int));
+	for (size_t i = 0; i < sizeof(arr2) / sizeof(int); i++)
+		std::cout << arr2[i] << " ";
 	try
 	{
-		std::list<int>::iterator it = easyfind(lst, 30);
-		std::cout << "Found value: " << *it << std::endl;
+		int	searchValue = 30;
+		std::cout << "\nSearch value: " << searchValue << "\n";
+		std::cout << "Found  value: " << easyfind(lst, searchValue) << std::endl;
 	}
 	catch (const std::exception &e)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
+
+	std::cout << GREEN << "\nDEQUE CONTAINER --> " << RESET;
+	int arr3[] = {100, 200, 300, 400, 500};
+	std::deque<int> dque(arr3, arr3 + sizeof(arr3) / sizeof(int));
+	for (size_t i = 0; i < sizeof(arr3) / sizeof(int); i++)
+		std::cout << arr3[i] << " ";
 	try
 	{
-		easyfind(vec, 6);
+		int	searchValue = 299;
+		std::cout << "\nSearch value: " << searchValue << "\n";
+		std::cout << "Found  value: " << easyfind(lst, searchValue) << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Exception: " << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
+	std::cout << std::endl;
 	return (0);
 }

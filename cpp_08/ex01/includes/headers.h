@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   headers.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef HEADERS_H
+# define HEADERS_H
 
 # include <iostream>		// For input and output stream
 # include <string>			// For string class and functions
@@ -28,8 +28,9 @@
 # include <list>            // For using the list container
 # include <map>             // For using the map container
 # include <algorithm>       // For using algorithms like sort, find, etc.
+# include <deque>           // For deque
 
-# include "easyfind.hpp"
+# include "Span.hpp"
 
 # define RED	"\x1b[31;1m"
 # define GREEN	"\x1b[32;1m"
@@ -37,7 +38,5 @@
 # define CYAN	"\x1b[36;1m"
 # define YELLOW	"\033[33;1m"
 # define RESET	"\x1b[0m"
-
-void errorMessage(std::string message);
 
 #endif
