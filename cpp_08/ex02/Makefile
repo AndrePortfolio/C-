@@ -1,4 +1,4 @@
-NAME = span
+NAME = stack
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 CXX = c++
 COMPRESS = ar rcs
@@ -7,7 +7,7 @@ RM = rm -rf
 OBJ_DIR = objects
 SRC_DIR = sources
 HEADER = includes
-S = main Span
+S = main aux
 SRC = $(addprefix $(SRC_DIR)/,$(addsuffix .cpp, $(S)))
 OBJ = $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.cpp=.o)))
 

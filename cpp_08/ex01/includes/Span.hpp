@@ -3,33 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 18:27:31 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/21 18:36:55 by andre-da         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:36:04 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_H
-# define SPAN_H
+#ifndef SPAN_HPP
+# define SPAN_HPP
 
-# include "headers.h"
+# include "headers.hpp"
 
 class Span
 {
 	private:
-        int* integers;
+		unsigned int		maxSize;
+		std::vector<int>	numbers;
+
+		Span();
 
 	public:
-		Span();
 		Span(unsigned int N);
 		Span(const Span &copy);
 		Span& operator=(const Span &other);
 		~Span();
 
-        void    addNumber(int number);
-        void    shortestSpan();
-        void    longestSpan();
+		void	fillContainer();
+		void	addNumber(int number);
+		void	prepareSpan();
+		size_t	shortestSpan();
+		size_t	longestSpan();
 };
 
 #endif

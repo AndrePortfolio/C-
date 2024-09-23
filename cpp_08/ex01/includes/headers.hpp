@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   headers.h                                          :+:      :+:    :+:   */
+/*   headers.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/19 19:06:17 by andre-da         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:00:04 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADERS_H
-# define HEADERS_H
+#ifndef HEADERS_HPP
+# define HEADERS_HPP
 
 # include <iostream>		// For input and output stream
 # include <string>			// For string class and functions
@@ -29,8 +29,9 @@
 # include <map>             // For using the map container
 # include <algorithm>       // For using algorithms like sort, find, etc.
 # include <deque>           // For deque
+# include <random>			// For creating random numbers
 
-# include "easyfind.hpp"
+# include "Span.hpp"
 
 # define RED	"\x1b[31;1m"
 # define GREEN	"\x1b[32;1m"

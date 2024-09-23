@@ -6,14 +6,14 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/08/25 12:44:28 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/23 11:12:43 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-# include "headers.h"
+# include "headers.hpp"
 
 template<typename T>
 int	easyfind(T container, int value)
