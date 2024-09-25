@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/25 13:32:42 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/25 14:59:14 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/headers.hpp"
+#ifndef RPN_HPP
+# define RPN_HPP
 
-static void	errorMessage(std::string message)
-{
-	std::cerr << RED << message << RESET << std::endl;
-}
+# include "headers.hpp"
 
-int main(int argc, char *argv[])
+class RPN
 {
-	if (argc != 2)
-		return (errorMessage("Usage: ./btc <inputFile>"), 1);
-	try
-	{
-		BitcoinExchange	btc;
-		btc.execute(argv[1]);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	return (0);
-}
+	private:
+		std::stack<float>	stack;
+
+		RPN(const RPN &copy);
+		RPN&	operator=(const RPN &other);
+
+		void	performOperation(std::string& token);
+
+	public:
+		RPN();
+		~RPN();
+
+		void	push(float value);
+		float	pop();
+		void	handleExpression(char* argv);
+		int		size();
+};
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/25 12:20:03 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/25 15:12:31 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ static bool	errorHandling(std::istringstream& iss, double& quantity,
 	char				del1, del2;
 
 	if (!(dateStream >> year >> del1 >> month >> del2 >> day)
-		|| del1 != '-' || del2 != '-' || !(iss >> quantity))
+		|| del1 != '-' || del2 != '-' || !(iss >> quantity)
+		|| year < 2009 || year > 2022 || month > 12
+		|| month < 1 || day > 31 || day < 1)
 	{
 		std::cerr << "Error: bad input => " << line << "\n";
 		return (true);
@@ -105,6 +107,8 @@ void	BitcoinExchange::execute(char argv[])
 
 	if (!file.is_open())
 		throw std::runtime_error("Error: could not open file");
+	if (file.peek() == std::ifstream::traits_type::eof())
+		throw std::runtime_error("Error: empty file");
 
 	std::getline(file, line);
 	if (line != "date | value")
