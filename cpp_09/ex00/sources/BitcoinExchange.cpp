@@ -72,6 +72,34 @@ void	BitcoinExchange::readData()
 	}
 }
 
+static bool	validDate(const int& year, const double& month, const double& day)
+{
+	if (day < 1 || month < 1)
+		return (false);
+	if (month == 2)
+	{
+		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+		{
+			if (day > 29)
+				return (false);
+		}
+		else
+			if (day > 28)
+				return (false);
+	}
+	else if (month == 4 || month == 6 || month == 9 || month == 11)
+    {
+        if (day > 30)
+			return (false);
+    }
+	else
+    {
+        if (day > 31)
+			return (false);
+	}
+	return (true);
+}
+
 static bool	errorHandling(std::istringstream& iss, double& quantity,
 					const std::string& date, const std::string& line)
 {
@@ -80,9 +108,8 @@ static bool	errorHandling(std::istringstream& iss, double& quantity,
 	char				del1, del2;
 
 	if (!(dateStream >> year >> del1 >> month >> del2 >> day)
-		|| del1 != '-' || del2 != '-' || !(iss >> quantity)
-		|| year < 2009 || year > 2022 || month > 12
-		|| month < 1 || day > 31 || day < 1)
+		|| del1 != '-' || del2 != '-' || !(iss >> quantity) 
+		|| !validDate(year, month, day))
 	{
 		std::cerr << "Error: bad input => " << line << "\n";
 		return (true);
@@ -98,6 +125,17 @@ static bool	errorHandling(std::istringstream& iss, double& quantity,
 		return (true);
 	}
 	return (false);
+}
+
+static void	adjustDateFormat(std::string& date)
+{
+	if (date.length() == 10)
+	{
+		char tmp = date[8];
+		date[8] = '0';
+		date[9] = tmp;
+		date += ' ';
+	}
 }
 
 void	BitcoinExchange::execute(char argv[])
@@ -121,13 +159,20 @@ void	BitcoinExchange::execute(char argv[])
 		double				quantity;
 
 		std::getline(iss, date, '|');
+		adjustDateFormat(date);
 		constIterator it = data.lower_bound(date);
 
 		if (errorHandling(iss, quantity, date, line))
 			continue ;
-		if (it == data.end() || (it != data.begin() && it->first != date))
+		if (it == data.end())
 			--it;
-		if (it != data.end())
-			std::cout << date << "=> " << quantity << " = " << it->second * quantity << "\n";
+		else if (it != data.begin() && it->first != date)
+			--it;
+		if (it->first > date)
+		{
+			std::cerr << "Error: bad input => " << line << "\n";
+			continue;
+   		}
+	    std::cout << date << " => " << quantity << " = " << it->second * quantity << "\n";
 	}
 }

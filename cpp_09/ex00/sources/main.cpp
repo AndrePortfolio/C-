@@ -30,5 +30,6 @@ int main(int argc, char *argv[])
 	{
 		std::cerr << e.what() << '\n';
 	}
+	std::cout << std::endl;
 	return (0);
 }

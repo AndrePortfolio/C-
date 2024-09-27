@@ -96,19 +96,20 @@ void	RPN::handleExpression(char* argv)
 
 	while (iss >> token)
 	{
-		try
-		{
-			float value = std::stof(token);
-			if (value < 0 || value > 9)
-				throw std::runtime_error("Error: values must be smaller than 10.");
-			push(value);
-		}
-		catch (const std::invalid_argument&)
+		if (token[0] == '+' || token[0] == '*' || token[0] == '/' || token[0] == '-')
 		{
 			if (token.size() == 1)
+			{
 				performOperation(token);
+				continue ;
+			}
 			else
 				throw std::runtime_error("Error: Invalid token.");
 		}
+		float value = static_cast<float>(atof(token.c_str()));
+
+		if (value < 0 || value > 9)
+			throw std::runtime_error("Error: only values from 0 to 9.");
+		push(value);
 	}
 }

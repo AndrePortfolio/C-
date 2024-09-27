@@ -1,0 +1,32 @@
+sources/PmergeMe.cpp:62:23: error: no member named 'stod' in namespace 'std'
+                double value = std::stod(argv[i]);
+                               ~~~~~^
+sources/PmergeMe.cpp:120:27: error: no member named 'next' in namespace 'std'
+        lIterator               itLeft = std::next(lst.begin(), start);
+                                         ~~~~~^
+sources/PmergeMe.cpp:121:28: error: no member named 'next' in namespace 'std'
+        lIterator               itRight = std::next(lst.begin(), mid + 1);
+                                          ~~~~~^
+sources/PmergeMe.cpp:122:28: error: no member named 'next' in namespace 'std'
+        lIterator               endLeft = std::next(lst.begin(), mid + 1);
+                                          ~~~~~^
+sources/PmergeMe.cpp:123:29: error: no member named 'next' in namespace 'std'
+        lIterator               endRight = std::next(lst.begin(), end + 1);
+                                           ~~~~~^
+sources/PmergeMe.cpp:148:22: error: no member named 'next' in namespace 'std'
+        lIterator       it = std::next(lst.begin(), start);
+                             ~~~~~^
+sources/PmergeMe.cpp:150:26: error: no member named 'next' in namespace 'std'
+        it = lst.erase(it, std::next(it, end - start + 1));
+                           ~~~~~^
+sources/PmergeMe.cpp:151:5: error: no viable overloaded '='
+        it = lst.insert(it, merged.begin(), merged.end());
+        ~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_list.h:253:12: note: candidate function (the implicit copy assignment operator) not viable: cannot convert argument of incomplete type 'void' to 'const std::_List_iterator<int>' for 1st argument
+    struct _List_iterator
+           ^
+8 errors generated.
+make: *** [Makefile:31: objects/PmergeMe.o] Error 1
+
+
++ change the sorting algo

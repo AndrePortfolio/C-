@@ -30,7 +30,6 @@
 # include <algorithm>       // For using algorithms like sort, find, etc.
 # include <deque>           // For deque
 # include <stack>           // For stack
-# include <random>			// For creating random numbers
 
 # include "BitcoinExchange.hpp"
 
