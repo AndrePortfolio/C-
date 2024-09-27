@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 18:27:31 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/23 13:36:04 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/27 10:34:54 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ class Span
 		size_t	shortestSpan();
 		size_t	longestSpan();
 };
+
+typedef std::vector<int>::iterator	Iterator;
 
 #endif

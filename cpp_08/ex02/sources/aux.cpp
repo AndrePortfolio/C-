@@ -3,39 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   aux.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 16:48:00 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/09/23 17:03:30 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/27 11:15:21 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/headers.hpp"
-
-void	mutantStackVersion()
-{
-	std::cout << BLUE << "\nSTACK --> " << RESET;
-	MutantStack<int> mstack;
-	mstack.push(5);
-	mstack.push(17);
-	std::cout << mstack.top() << " ";
-	mstack.pop();
-	std::cout << mstack.size() << " ";
-	mstack.push(3);
-	mstack.push(5);
-	mstack.push(737);
-	mstack.push(0);
-	MutantStack<int>::iterator it = mstack.begin();
-	MutantStack<int>::iterator ite = mstack.end();
-	++it;
-	--it;
-	while (it != ite)
-	{
-		std::cout << *it << " ";
-		++it;
-	}
-	std::stack<int> s(mstack);
-}
 
 void	listVersion()
 {
@@ -85,5 +60,30 @@ void	vectorVersion()
 		++it;
 	}
 	std::vector<int> s(mvector);
+}
+
+void	mutantStackVersion()
+{
+	std::cout << BLUE << "\nSTACK --> " << RESET;
+	MutantStack<int> mstack;
+	mstack.push(5);
+	mstack.push(17);
+	std::cout << mstack.top() << " ";
+	mstack.pop();
+	std::cout << mstack.size() << " ";
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	mstack.push(0);
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
+	{
+		std::cout << *it << " ";
+		++it;
+	}
+	std::stack<int> s(mstack);
 	std::cout << std::endl;
 }

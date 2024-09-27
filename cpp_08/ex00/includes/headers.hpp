@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   headers.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/23 11:12:38 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/27 10:54:55 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 # include <map>             // For using the map container
 # include <algorithm>       // For using algorithms like sort, find, etc.
 # include <deque>           // For deque
-
-# include "easyfind.hpp"
 
 # define RED	"\x1b[31;1m"
 # define GREEN	"\x1b[32;1m"

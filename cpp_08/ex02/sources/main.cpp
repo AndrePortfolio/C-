@@ -3,21 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/23 17:18:43 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/27 11:25:17 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/headers.hpp"
 
-int main()
+static void	errorMessage(std::string message)
 {
+	std::cerr << RED << message << RESET << std::endl;
+}
+
+int main(int argc, char *argv[])
+{
+    (void)argv;
+	if (argc != 1)
+		return (errorMessage("Usage: ./stack"), 1);
+		
 	std::cout << GREEN << "\nSUBJECT TEST + COMPARISONS" << RESET;
-	mutantStackVersion();
-	listVersion();
 	vectorVersion();
+	listVersion();
+	mutantStackVersion();
 
 	std::cout << GREEN << "\nITERATE INT ARRAY\n" << RESET;
 	int arr[] = {10, 22, -33, 34, 25, 32};

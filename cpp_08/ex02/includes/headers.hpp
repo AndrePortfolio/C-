@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   headers.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/23 16:50:10 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/27 11:08:54 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # include <algorithm>       // For using algorithms like sort, find, etc.
 # include <deque>           // For deque
 # include <stack>           // For stack
-# include <random>			// For creating random numbers
 
 # include "MutantStack.hpp"
 

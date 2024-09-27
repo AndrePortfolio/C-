@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/23 15:50:32 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/27 10:46:51 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@
 
 Span::Span(){}
 
-Span::Span(unsigned int N) : maxSize(N){}
+Span::Span(unsigned int N) : maxSize(N)
+{
+	if (N == 0 || static_cast<int>(N) < 0)
+        throw std::out_of_range("Error: Not a positive number");
+}
 
 Span::Span(const Span &copy)
 {
@@ -51,18 +55,19 @@ void	Span::fillContainer()
 		throw std::runtime_error("Container is already full");
 	else
 	{
-		std::random_device				rd;				// creates a seed for random numbers
-		std::mt19937					gen(rd());		// Mersenne Twister algorithm
-		std::uniform_int_distribution<>	dis(1, 1000);
+		std::srand(static_cast<unsigned int>(time(0)));
 
 		while (numbers.size() < maxSize)
-			addNumber(dis(gen));
+		{
+			int randomNumber = (std::rand() % 1000) + 1;
+			addNumber(randomNumber);
+		}
 	}
 
 	std::sort(numbers.begin(), numbers.end());
 	std::cout << GREEN << "CONTAINER -> " << RESET;
 
-	for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); ++it)
+	for (Iterator it = numbers.begin(); it != numbers.end(); ++it)
 		std::cout << *it << " ";
 
 	std::cout << std::endl;
@@ -83,6 +88,16 @@ void	Span::prepareSpan()
 	std::sort(numbers.begin(), numbers.end());
 }
 
+static Iterator	next(Iterator it)
+{
+    return (++it);
+}
+
+static Iterator prev(Iterator it)
+{
+    return (--it);
+}
+
 size_t	Span::shortestSpan()
 {
 	prepareSpan();
@@ -90,9 +105,9 @@ size_t	Span::shortestSpan()
 	size_t	shortSpan = std::numeric_limits<size_t>::max();
 	int		i = 0, index = 0;
 
-	for (std::vector<int>::iterator it = numbers.begin(); it != std::prev(numbers.end()); ++it)
+	for (Iterator it = numbers.begin(); it != prev(numbers.end()); ++it)
 	{
-		size_t	diff = *std::next(it) - *it;
+		size_t	diff = *next(it) - *it;
 		if (diff < shortSpan)
 		{
 			shortSpan = diff;

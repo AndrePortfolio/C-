@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   headers.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/23 13:00:04 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/27 10:24:26 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # include <map>             // For using the map container
 # include <algorithm>       // For using algorithms like sort, find, etc.
 # include <deque>           // For deque
-# include <random>			// For creating random numbers
 
 # include "Span.hpp"
 

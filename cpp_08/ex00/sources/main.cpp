@@ -3,17 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
+/*   By: andre-da <andre-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/23 11:12:51 by andrealbuqu      ###   ########.fr       */
+/*   Created: 2024/09/27 11:22:02 by andre-da          #+#    #+#             */
+/*   Updated: 2024/09/27 11:25:25 by andre-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers.hpp"
+#include "../includes/easyfind.hpp"
 
-int	main(void)
+static void	errorMessage(std::string message)
 {
+	std::cerr << RED << message << RESET << std::endl;
+}
+
+int main(int argc, char *argv[])
+{
+    (void)argv;
+	if (argc != 1)
+		return (errorMessage("Usage: ./easyfind"), 1);
+        
 	int arr[] = {1, 2, 3, 4, 5};
 	std::vector<int> vec(arr, arr + sizeof(arr) / sizeof(int));
 	std::cout << GREEN << "\nVECTOR CONTAINER -> " << RESET;
