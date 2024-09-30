@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:19:02 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/09/26 17:54:33 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/09/30 12:52:37 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 /*-------------------------- Constructors & Destructor -----------------------*/
 /*----------------------------------------------------------------------------*/
 
-PmergeMe::PmergeMe() : vec(), lst() {}
+PmergeMe::PmergeMe() : vec(), lst() , vectorSpeed(0), listSpeed(0) {}
 
-PmergeMe::PmergeMe(int argc, char* argv[])
+PmergeMe::PmergeMe(int argc, char* argv[]) : vec(), lst() , vectorSpeed(0), listSpeed(0)
 {
 	checkInput(argc, argv);
 	printState("Before: ");
@@ -70,85 +70,69 @@ void	PmergeMe::checkInput(int argc, char* argv[])
 	}
 }
 
-void	PmergeMe::vDivide(int start, int end)
+static void chainPrintState(vect& chainA, vect& chainB, vect& sorted)
 {
-	if (start == end)
-		return ;
-
-	int mid = start + (end - start) / 2;
-
-	vDivide(start, mid);
-	vDivide(mid + 1, end);
-	vMerge(start, mid, end);
+	std::cout << std::endl << "chainA: ";
+	for (vIterator it = chainA.begin(); it != chainA.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl << "ChainB: ";
+	for (vIterator it = chainB.begin(); it != chainB.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl << "Sorted: ";
+	for (vIterator it = sorted.begin(); it != sorted.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl << std::endl;
 }
 
-void	PmergeMe::lDivide(int start, int end)
+void	PmergeMe::insertionSortVector(vect& chainA, vect& chainB, vect& sorted)
 {
-	if (start == end)
-		return ;
-
-	int mid = start + (end - start) / 2;
-
-	lDivide(start, mid);
-	lDivide(mid + 1, end);
-	lMerge(start, mid, end);
-}
-
-void	PmergeMe::vMerge(int start, int mid, int end)
-{
-	std::vector<int> left(vec.begin() + start, vec.begin() + mid + 1);
-	std::vector<int> right(vec.begin() + mid + 1, vec.begin() + end + 1);
-
-	size_t l = 0, r = 0, v = start;
-
-	while (l < left.size() && r < right.size())
+	for (vIterator it = chainA.begin(); it != chainA.end();)
 	{
-		if (left[l] <= right[r])
-			vec[v++] = left[l++];
-		else
-			vec[v++] = right[r++];
+		sorted.push_back(*it);
+		it = chainA.erase(it);
 	}
-	while (l < left.size())
-		vec[v++] = left[l++];
-	while (r < right.size())
-		vec[v++] = right[r++];
+
+
+	(void)chainA;
+	(void)chainB;
+	(void)sorted;
 }
 
-void	PmergeMe::lMerge(int start, int mid, int end)
+void	PmergeMe::pairVector()
 {
-	std::list<int>	merged;
-	lIterator		itLeft = std::next(lst.begin(), start);
-	lIterator		itRight = std::next(lst.begin(), mid + 1);
-	lIterator		endLeft = std::next(lst.begin(), mid + 1);
-	lIterator		endRight = std::next(lst.begin(), end + 1);
+	vect	chainA;
+	vect	chainB;
+	vect	sorted;
 
-	while (itLeft != endLeft && itRight != endRight)
+	for (vIterator it = vec.begin(); it != std::prev(vec.end()); it++)
 	{
-		if (*itLeft <= *itRight)
+		if (*it < *std::next(it))
 		{
-			merged.push_back(*itLeft);
-			itLeft++;
+			chainA.push_back(*it);
+			if (std::next(it) == std::prev(vec.end()))
+				chainB.push_back(*std::next(it));
 		}
 		else
 		{
-			merged.push_back(*itRight);
-			itRight++;
+			chainB.push_back(*it);
+			if (std::next(it) == std::prev(vec.end()))
+				chainA.push_back(*std::next(it));
 		}
 	}
-	while (itLeft != endLeft)
+	if (!chainA.empty())
 	{
-		merged.push_back(*itLeft);
-		itLeft++;
+		sorted.push_back(*std::max_element(chainA.begin(), chainA.end()));
+		chainA.erase(std::max_element(chainA.begin(), chainA.end()));
 	}
-	while (itRight != endRight)
+	if (!chainB.empty())
 	{
-		merged.push_back(*itRight);
-		itRight++;
+		sorted.push_back(*std::min_element(chainB.begin(), chainB.end()));
+		chainB.erase(std::min_element(chainB.begin(), chainB.end()));
 	}
-	lIterator	it = std::next(lst.begin(), start);
 
-	it = lst.erase(it, std::next(it, end - start + 1));
-	it = lst.insert(it, merged.begin(), merged.end());
+	chainPrintState(chainA, chainB, sorted);
+	insertionSortVector(chainA, chainB, sorted);
+	chainPrintState(chainA, chainB, sorted);
 }
 
 void	PmergeMe::sort()
@@ -166,12 +150,13 @@ void	PmergeMe::sort()
 		std::clock_t end;
 
 		start = std::clock();
-		vDivide(0, size - 1);
+		pairVector();
+		// vDivide(0, size - 1);
 		end = std::clock();
 		vectorSpeed = (static_cast<double>(end - start) / CLOCKS_PER_SEC) * 1e6;
 
 		start = std::clock();
-		lDivide(0, size - 1);
+		// lDivide(0, size - 1);
 		end = std::clock();
 		listSpeed = (static_cast<double>(end - start) / CLOCKS_PER_SEC) * 1e6;
 	}
@@ -197,3 +182,84 @@ void	PmergeMe::printSpeeds() const
 					<< " elements with std::list:   "
 					<< listSpeed << " us" << std::endl;
 }
+
+// void	PmergeMe::vDivide(int start, int end)
+// {
+// 	if (start == end)
+// 		return ;
+
+// 	int mid = start + (end - start) / 2;
+
+// 	vDivide(start, mid);
+// 	vDivide(mid + 1, end);
+// 	vMerge(start, mid, end);
+// }
+
+// void	PmergeMe::lDivide(int start, int end)
+// {
+// 	if (start == end)
+// 		return ;
+
+// 	int mid = start + (end - start) / 2;
+
+// 	lDivide(start, mid);
+// 	lDivide(mid + 1, end);
+// 	lMerge(start, mid, end);
+// }
+
+// void	PmergeMe::vMerge(int start, int mid, int end)
+// {
+// 	std::vector<int> left(vec.begin() + start, vec.begin() + mid + 1);
+// 	std::vector<int> right(vec.begin() + mid + 1, vec.begin() + end + 1);
+
+// 	size_t l = 0, r = 0, v = start;
+
+// 	while (l < left.size() && r < right.size())
+// 	{
+// 		if (left[l] <= right[r])
+// 			vec[v++] = left[l++];
+// 		else
+// 			vec[v++] = right[r++];
+// 	}
+// 	while (l < left.size())
+// 		vec[v++] = left[l++];
+// 	while (r < right.size())
+// 		vec[v++] = right[r++];
+// }
+
+// void	PmergeMe::lMerge(int start, int mid, int end)
+// {
+// 	std::list<int>	merged;
+// 	lIterator		itLeft = std::next(lst.begin(), start);
+// 	lIterator		itRight = std::next(lst.begin(), mid + 1);
+// 	lIterator		endLeft = std::next(lst.begin(), mid + 1);
+// 	lIterator		endRight = std::next(lst.begin(), end + 1);
+
+// 	while (itLeft != endLeft && itRight != endRight)
+// 	{
+// 		if (*itLeft <= *itRight)
+// 		{
+// 			merged.push_back(*itLeft);
+// 			itLeft++;
+// 		}
+// 		else
+// 		{
+// 			merged.push_back(*itRight);
+// 			itRight++;
+// 		}
+// 	}
+// 	while (itLeft != endLeft)
+// 	{
+// 		merged.push_back(*itLeft);
+// 		itLeft++;
+// 	}
+// 	while (itRight != endRight)
+// 	{
+// 		merged.push_back(*itRight);
+// 		itRight++;
+// 	}
+// 	lIterator	it = std::next(lst.begin(), start);
+
+// 	it = lst.erase(it, std::next(it, end - start + 1));
+// 	it = lst.insert(it, merged.begin(), merged.end());
+// }
