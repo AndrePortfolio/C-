@@ -36,13 +36,12 @@ class PmergeMe
 
 		void	checkInput(int argc, char* argv[]);
 		void	sort();
-		void	pairVector();
-		void	insertionSortVector(vect& chainA, vect& chainB, vect& sorted);
-		void	pairList();
-		// void	vDivide(int start, int end);
-		// void	lDivide(int start, int end);
-		// void	vMerge(int start, int mid, int end);
-		// void	lMerge(int start, int mid, int end);
+		void	vMergeInsertionSort();
+		void	vMergeInsert(int start, int end);
+		void	vMerge(int start, int mid, int end);
+		void	lMergeInsertionSort();
+		void	lMergeInsert(int start, int end);
+		void	lMerge(int start, int mid, int end);
 		void	printState(const std::string& state) const;
 		void	printSpeeds() const;
 

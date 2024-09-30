@@ -59,7 +59,7 @@ void	PmergeMe::checkInput(int argc, char* argv[])
 
 	for (int i = 1; i < argc; i++)
 	{
-		double value = std::stod(argv[i]);
+		float value = std::atof(argv[i]);
 
 		if (value <= 0)
 			throw std::out_of_range("Error: input must be a positive integer");
@@ -68,71 +68,6 @@ void	PmergeMe::checkInput(int argc, char* argv[])
 		lst.push_back(static_cast<int>(value));
 		vec.push_back(static_cast<int>(value));
 	}
-}
-
-static void chainPrintState(vect& chainA, vect& chainB, vect& sorted)
-{
-	std::cout << std::endl << "chainA: ";
-	for (vIterator it = chainA.begin(); it != chainA.end(); ++it)
-		std::cout << *it << " ";
-	std::cout << std::endl << "ChainB: ";
-	for (vIterator it = chainB.begin(); it != chainB.end(); ++it)
-		std::cout << *it << " ";
-	std::cout << std::endl << "Sorted: ";
-	for (vIterator it = sorted.begin(); it != sorted.end(); ++it)
-		std::cout << *it << " ";
-	std::cout << std::endl << std::endl;
-}
-
-void	PmergeMe::insertionSortVector(vect& chainA, vect& chainB, vect& sorted)
-{
-	for (vIterator it = chainA.begin(); it != chainA.end();)
-	{
-		sorted.push_back(*it);
-		it = chainA.erase(it);
-	}
-
-
-	(void)chainA;
-	(void)chainB;
-	(void)sorted;
-}
-
-void	PmergeMe::pairVector()
-{
-	vect	chainA;
-	vect	chainB;
-	vect	sorted;
-
-	for (vIterator it = vec.begin(); it != std::prev(vec.end()); it++)
-	{
-		if (*it < *std::next(it))
-		{
-			chainA.push_back(*it);
-			if (std::next(it) == std::prev(vec.end()))
-				chainB.push_back(*std::next(it));
-		}
-		else
-		{
-			chainB.push_back(*it);
-			if (std::next(it) == std::prev(vec.end()))
-				chainA.push_back(*std::next(it));
-		}
-	}
-	if (!chainA.empty())
-	{
-		sorted.push_back(*std::max_element(chainA.begin(), chainA.end()));
-		chainA.erase(std::max_element(chainA.begin(), chainA.end()));
-	}
-	if (!chainB.empty())
-	{
-		sorted.push_back(*std::min_element(chainB.begin(), chainB.end()));
-		chainB.erase(std::min_element(chainB.begin(), chainB.end()));
-	}
-
-	chainPrintState(chainA, chainB, sorted);
-	insertionSortVector(chainA, chainB, sorted);
-	chainPrintState(chainA, chainB, sorted);
 }
 
 void	PmergeMe::sort()
@@ -150,16 +85,41 @@ void	PmergeMe::sort()
 		std::clock_t end;
 
 		start = std::clock();
-		pairVector();
-		// vDivide(0, size - 1);
+		vMergeInsertionSort();
 		end = std::clock();
 		vectorSpeed = (static_cast<double>(end - start) / CLOCKS_PER_SEC) * 1e6;
 
 		start = std::clock();
-		// lDivide(0, size - 1);
+		lMergeInsertionSort();
 		end = std::clock();
 		listSpeed = (static_cast<double>(end - start) / CLOCKS_PER_SEC) * 1e6;
 	}
+}
+
+static vIterator vNext(vIterator it)
+{
+	return (++it);
+}
+
+static vIterator vPrev(vIterator it)
+{
+	return (--it);
+}
+
+static lIterator lNext(lIterator it)
+{
+	return (++it);
+}
+
+static lIterator lPrev(lIterator it)
+{
+	return (--it);
+}
+
+static lIterator lNextX(lIterator it, int dist)
+{
+	std::advance(it, dist);
+	return (it);
 }
 
 void	PmergeMe::printState(const std::string& state) const
@@ -167,9 +127,9 @@ void	PmergeMe::printState(const std::string& state) const
 	std::cout << state;
 	for (vConstIterator it = vec.begin(); it != vec.end(); ++it)
 		std::cout << *it << " ";
-	// std::cout << "\n" << state;
-	// for (lConstIterator it = lst.begin(); it != lst.end(); ++it)
-	// 	std::cout << *it << " ";
+	std::cout << "\n" << state;
+	for (lConstIterator it = lst.begin(); it != lst.end(); ++it)
+		std::cout << *it << " ";
 	std::cout << std::endl;
 }
 
@@ -183,83 +143,187 @@ void	PmergeMe::printSpeeds() const
 					<< listSpeed << " us" << std::endl;
 }
 
-// void	PmergeMe::vDivide(int start, int end)
-// {
-// 	if (start == end)
-// 		return ;
+/*----------------------------------------------------------------------------*/
+/*------------------------------ Vector Container ----------------------------*/
+/*----------------------------------------------------------------------------*/
 
-// 	int mid = start + (end - start) / 2;
+void	PmergeMe::vMergeInsertionSort()
+{
+	vect		chainA;
+	vect		chainB;
+	vect		sorted;
+	vIterator	it = vec.begin();
 
-// 	vDivide(start, mid);
-// 	vDivide(mid + 1, end);
-// 	vMerge(start, mid, end);
-// }
+	// Step 1: Pair elements from vec into chainA and chainB
+	while (it != vPrev(vec.end()) && it != vec.end())
+	{
+		if (*it < *vNext(it))
+		{
+			chainA.push_back(*it);
+			chainB.push_back(*vNext(it));
+		}
+		else
+		{
+			chainB.push_back(*it);
+			chainA.push_back(*vNext(it));
+		}
+		it += 2;
+	}	
+	if (it == vPrev(vec.end()))
+		chainB.push_back(*it);
 
-// void	PmergeMe::lDivide(int start, int end)
-// {
-// 	if (start == end)
-// 		return ;
+	// Step 2: Recursively sort the larger elements (chainB)
+	vMergeInsert(0, chainB.size() - 1);
 
-// 	int mid = start + (end - start) / 2;
+	// Step 3: Add the first (smallest) element from sorted chainB to 'sorted'
+	sorted.push_back(chainB.front());
+	chainB.erase(chainB.begin());
 
-// 	lDivide(start, mid);
-// 	lDivide(mid + 1, end);
-// 	lMerge(start, mid, end);
-// }
+	// Step 4: Insert elements from chainA into 'sorted' using binary search
+	for (vConstIterator it = chainA.begin(); it != chainA.end(); ++it)
+	{
+        vIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
+        sorted.insert(pos, *it);
+    }
 
-// void	PmergeMe::vMerge(int start, int mid, int end)
-// {
-// 	std::vector<int> left(vec.begin() + start, vec.begin() + mid + 1);
-// 	std::vector<int> right(vec.begin() + mid + 1, vec.begin() + end + 1);
+    // Step 5: Insert the remaining elements from chainB into 'sorted'
+    for (vConstIterator it = chainB.begin(); it != chainB.end(); ++it)
+	{
+        vIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
+        sorted.insert(pos, *it);
+    }
+	vec = sorted;
+}
 
-// 	size_t l = 0, r = 0, v = start;
+void	PmergeMe::vMergeInsert(int start, int end)
+{
+	if (start == end)
+		return ;
 
-// 	while (l < left.size() && r < right.size())
-// 	{
-// 		if (left[l] <= right[r])
-// 			vec[v++] = left[l++];
-// 		else
-// 			vec[v++] = right[r++];
-// 	}
-// 	while (l < left.size())
-// 		vec[v++] = left[l++];
-// 	while (r < right.size())
-// 		vec[v++] = right[r++];
-// }
+	int mid = start + (end - start) / 2;
 
-// void	PmergeMe::lMerge(int start, int mid, int end)
-// {
-// 	std::list<int>	merged;
-// 	lIterator		itLeft = std::next(lst.begin(), start);
-// 	lIterator		itRight = std::next(lst.begin(), mid + 1);
-// 	lIterator		endLeft = std::next(lst.begin(), mid + 1);
-// 	lIterator		endRight = std::next(lst.begin(), end + 1);
+	vMergeInsert(start, mid);
+	vMergeInsert(mid + 1, end);
+	vMerge(start, mid, end);
+}
 
-// 	while (itLeft != endLeft && itRight != endRight)
-// 	{
-// 		if (*itLeft <= *itRight)
-// 		{
-// 			merged.push_back(*itLeft);
-// 			itLeft++;
-// 		}
-// 		else
-// 		{
-// 			merged.push_back(*itRight);
-// 			itRight++;
-// 		}
-// 	}
-// 	while (itLeft != endLeft)
-// 	{
-// 		merged.push_back(*itLeft);
-// 		itLeft++;
-// 	}
-// 	while (itRight != endRight)
-// 	{
-// 		merged.push_back(*itRight);
-// 		itRight++;
-// 	}
-// 	lIterator	it = std::next(lst.begin(), start);
+void	PmergeMe::vMerge(int start, int mid, int end)
+{
+	std::vector<int> left(vec.begin() + start, vec.begin() + mid + 1);
+	std::vector<int> right(vec.begin() + mid + 1, vec.begin() + end + 1);
 
-// 	it = lst.erase(it, std::next(it, end - start + 1));
-// 	it = lst.insert(it, merged.begin(), merged.end());
-// }
+	size_t l = 0, r = 0, v = start;
+
+	while (l < left.size() && r < right.size())
+	{
+		if (left[l] <= right[r])
+			vec[v++] = left[l++];
+		else
+			vec[v++] = right[r++];
+	}
+	while (l < left.size())
+		vec[v++] = left[l++];
+	while (r < right.size())
+		vec[v++] = right[r++];
+}
+
+/*----------------------------------------------------------------------------*/
+/*------------------------------- List Container -----------------------------*/
+/*----------------------------------------------------------------------------*/
+
+void	PmergeMe::lMergeInsertionSort()
+{
+	list		chainA;
+	list		chainB;
+	list		sorted;
+	lIterator	it = lst.begin();
+
+	// Step 1: Pair elements from lst into chainA and chainB
+	while (it != lPrev(lst.end()) && it != lst.end())
+	{
+		if (*it < *lNext(it))
+		{
+			chainA.push_back(*it);
+			chainB.push_back(*lNext(it));
+		}
+		else
+		{
+			chainB.push_back(*it);
+			chainA.push_back(*lNext(it));
+		}
+		std::advance(it, 2);
+	}	
+	if (it == lPrev(lst.end()))
+		chainB.push_back(*it);
+
+	// Step 2: Recursively sort the larger elements (chainB)
+	lMergeInsert(0, chainB.size() - 1);
+
+	// Step 3: Add the first (smallest) element from sorted chainB to 'sorted'
+	sorted.push_back(chainB.front());
+	chainB.erase(chainB.begin());
+
+	// Step 4: Insert elements from chainA into 'sorted' using binary search
+	for (lConstIterator it = chainA.begin(); it != chainA.end(); ++it)
+	{
+        lIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
+        sorted.insert(pos, *it);
+    }
+
+    // Step 5: Insert the remaining elements from chainB into 'sorted'
+    for (lConstIterator it = chainB.begin(); it != chainB.end(); ++it)
+	{
+        lIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
+        sorted.insert(pos, *it);
+    }
+	lst = sorted;
+}
+
+void	PmergeMe::lMergeInsert(int start, int end)
+{
+	if (start == end)
+		return ;
+
+	int mid = start + (end - start) / 2;
+
+	lMergeInsert(start, mid);
+	lMergeInsert(mid + 1, end);
+	lMerge(start, mid, end);
+}
+
+void	PmergeMe::lMerge(int start, int mid, int end)
+{
+	list		merged;
+	lIterator	itLeft = lNextX(lst.begin(), start);
+	lIterator	itRight = lNextX(lst.begin(), mid + 1);
+	lIterator	endLeft = lNextX(lst.begin(), mid + 1);
+	lIterator	endRight = lNextX(lst.begin(), end + 1);
+
+	while (itLeft != endLeft && itRight != endRight)
+	{
+		if (*itLeft <= *itRight)
+		{
+			merged.push_back(*itLeft);
+			itLeft++;
+		}
+		else
+		{
+			merged.push_back(*itRight);
+			itRight++;
+		}
+	}
+	while (itLeft != endLeft)
+	{
+		merged.push_back(*itLeft);
+		itLeft++;
+	}
+	while (itRight != endRight)
+	{
+		merged.push_back(*itRight);
+		itRight++;
+	}
+	lIterator	it = lNextX(lst.begin(), start);
+
+	it = lst.erase(it, lNextX(it, end - start + 1));
+	lst.insert(lst.end(), merged.begin(), merged.end());
+}
