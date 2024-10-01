@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/10/01 11:45:15 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/10/01 13:12:25 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,21 @@ class PmergeMe
 
 		void	checkInput(int argc, char* argv[]);
 		void	sort();
-		void	vMergeInsertionSort();
-		void	vMergeInsert(int start, int end, vect& chainB);
-		void	vMerge(int start, int mid, int end, vect& chainB);
-		void	vPairElements(vect &chainA, vect &chainB);
-		void	vInsertRemainingElements(vect &sorted, const vect &chainA, const vect &chainB);
-		void	lMergeInsertionSort();
-		void	lMergeInsert(int start, int end);
-		void	lMerge(int start, int mid, int end);
 		void	printState(const std::string& state) const;
 		void	printSpeeds() const;
+
+		// vector container
+		void	vMergeInsertionSort();
+		void	vPairElements(vect &chainA, vect &chainB);
+		void	vMergeInsert(int start, int end, vect& chainB);
+		void	vMerge(int start, int mid, int end, vect& chainB);
+		void	vInsertRemainingElements(vect &sorted, const vect &chainA, const vect &chainB);
+
+		// list container
+		void	lMergeInsertionSort();
+		void	lPairElements(list &chainA, list &chainB);
+		void	lMergeInsert(int start, int end, list& chainB);
+		void	lMerge(int start, int mid, int end, list& chainB);
 
 	public:
 		PmergeMe(int argc, char* argv[]);

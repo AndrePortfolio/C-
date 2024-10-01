@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:19:02 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/10/01 13:06:21 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/10/01 13:14:55 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,6 @@ void	PmergeMe::sort()
 	}
 }
 
-// static vIterator vNext(vIterator it)
-// {
-// 	return (++it);
-// }
-
-// static vIterator vPrev(vIterator it)
-// {
-// 	return (--it);
-// }
-
 static lIterator lNext(lIterator it)
 {
 	return (++it);
@@ -171,7 +161,7 @@ void PmergeMe::vMergeInsertionSort()
 
 	// Step 1: Group the elements of X into n/2 pairs of elements
 	// Step 2: Perform n/2 comparisons, to determine the larger of the two elements in each pair
-    vPairElements(chainA, chainB);
+	vPairElements(chainA, chainB);
 
 	// Step 3: Recursively sort the n/2 larger elements (chainB) using the merge-insertion sort.
 	vMergeInsert(0, chainB.size() - 1, chainB);
@@ -181,7 +171,7 @@ void PmergeMe::vMergeInsertionSort()
 	sorted.push_back(chainA[0]);
 	sorted.push_back(chainB[0]);
 
-	// Step 4: Insert the remaining n/2 - 1  using Jacobsthal Numbers for binary search.
+	// Step 5: Insert the remaining n/2 - 1  using Jacobsthal Numbers for binary search.
 	vInsertRemainingElements(sorted, chainA, chainB);
 
 	vec = sorted;
@@ -272,20 +262,45 @@ void	PmergeMe::vMerge(int start, int mid, int end, vect& chainB)
 		chainB[v++] = right[r++];
 }
 
-
-
 /*----------------------------------------------------------------------------*/
 /*------------------------------- List Container -----------------------------*/
 /*----------------------------------------------------------------------------*/
 
 void	PmergeMe::lMergeInsertionSort()
 {
-	list		chainA;
-	list		chainB;
-	list		sorted;
+	list	chainA, chainB;
+
+	// Step 1: Group the elements of X into n/2 pairs of elements
+	// Step 2: Perform n/2 comparisons, to determine the larger of the two elements in each pair
+	lPairElements(chainA, chainB);
+
+	// Step 3: Recursively sort the n/2 larger elements (chainB) using the merge-insertion sort.
+	lMergeInsert(0, chainB.size() - 1, chainB);
+
+	// Step 4: Insert at the start of S the element that was paired with the smallest element of S
+	list	sorted;
+	sorted.push_back(chainB.front());
+	chainB.erase(chainB.begin());
+
+	// Step 5: Insert the remaining n/2 - 1  using Jacobsthal Numbers for binary search.
+	for (lConstIterator it = chainA.begin(); it != chainA.end(); ++it)
+	{
+        lIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
+        sorted.insert(pos, *it);
+    }
+
+    for (lConstIterator it = chainB.begin(); it != chainB.end(); ++it)
+	{
+        lIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
+        sorted.insert(pos, *it);
+    }
+	lst = sorted;
+}
+
+void PmergeMe::lPairElements(list &chainA, list &chainB)
+{
 	lIterator	it = lst.begin();
 
-	// Step 1: Pair elements from lst into chainA and chainB
 	while (it != lPrev(lst.end()) && it != lst.end())
 	{
 		if (*it < *lNext(it))
@@ -302,49 +317,27 @@ void	PmergeMe::lMergeInsertionSort()
 	}
 	if (it == lPrev(lst.end()))
 		chainB.push_back(*it);
-
-	// Step 2: Recursively sort the larger elements (chainB)
-	lMergeInsert(0, chainB.size() - 1);
-
-	// Step 3: Add the first (smallest) element from sorted chainB to 'sorted'
-	sorted.push_back(chainB.front());
-	chainB.erase(chainB.begin());
-
-	// Step 4: Insert elements from chainA into 'sorted' using binary search
-	for (lConstIterator it = chainA.begin(); it != chainA.end(); ++it)
-	{
-        lIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
-        sorted.insert(pos, *it);
-    }
-
-    // Step 5: Insert the remaining elements from chainB into 'sorted'
-    for (lConstIterator it = chainB.begin(); it != chainB.end(); ++it)
-	{
-        lIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
-        sorted.insert(pos, *it);
-    }
-	lst = sorted;
 }
 
-void	PmergeMe::lMergeInsert(int start, int end)
+void	PmergeMe::lMergeInsert(int start, int end, list& chainB)
 {
 	if (start == end)
 		return ;
 
 	int mid = start + (end - start) / 2;
 
-	lMergeInsert(start, mid);
-	lMergeInsert(mid + 1, end);
-	lMerge(start, mid, end);
+	lMergeInsert(start, mid, chainB);
+	lMergeInsert(mid + 1, end, chainB);
+	lMerge(start, mid, end, chainB);
 }
 
-void	PmergeMe::lMerge(int start, int mid, int end)
+void	PmergeMe::lMerge(int start, int mid, int end, list& chainB)
 {
 	list		merged;
-	lIterator	itLeft = lNextX(lst.begin(), start);
-	lIterator	itRight = lNextX(lst.begin(), mid + 1);
-	lIterator	endLeft = lNextX(lst.begin(), mid + 1);
-	lIterator	endRight = lNextX(lst.begin(), end + 1);
+	lIterator	itLeft = lNextX(chainB.begin(), start);
+	lIterator	itRight = lNextX(chainB.begin(), mid + 1);
+	lIterator	endLeft = lNextX(chainB.begin(), mid + 1);
+	lIterator	endRight = lNextX(chainB.begin(), end + 1);
 
 	while (itLeft != endLeft && itRight != endRight)
 	{
@@ -369,8 +362,8 @@ void	PmergeMe::lMerge(int start, int mid, int end)
 		merged.push_back(*itRight);
 		itRight++;
 	}
-	lIterator	it = lNextX(lst.begin(), start);
+	lIterator	it = lNextX(chainB.begin(), start);
 
-	it = lst.erase(it, lNextX(it, end - start + 1));
-	lst.insert(lst.end(), merged.begin(), merged.end());
+	it = chainB.erase(it, lNextX(it, end - start + 1));
+	chainB.insert(chainB.end(), merged.begin(), merged.end());
 }
