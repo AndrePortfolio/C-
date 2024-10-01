@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/10/01 11:26:27 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/10/01 11:45:15 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ class PmergeMe
 		void	vMergeInsertionSort();
 		void	vMergeInsert(int start, int end, vect& chainB);
 		void	vMerge(int start, int mid, int end, vect& chainB);
+		void	vPairElements(vect &chainA, vect &chainB);
+		void	vInsertRemainingElements(vect &sorted, const vect &chainA, const vect &chainB);
 		void	lMergeInsertionSort();
 		void	lMergeInsert(int start, int end);
 		void	lMerge(int start, int mid, int end);
