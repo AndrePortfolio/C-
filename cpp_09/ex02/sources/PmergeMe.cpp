@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:19:02 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/10/01 11:50:06 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/10/01 13:06:21 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,18 +169,19 @@ void PmergeMe::vMergeInsertionSort()
 {
 	vect	chainA, chainB;
 
-	// Step 1: Pair elements and separate into chains
+	// Step 1: Group the elements of X into n/2 pairs of elements
+	// Step 2: Perform n/2 comparisons, to determine the larger of the two elements in each pair
     vPairElements(chainA, chainB);
 
-	// Step 2: Recursively sort chainB
+	// Step 3: Recursively sort the n/2 larger elements (chainB) using the merge-insertion sort.
 	vMergeInsert(0, chainB.size() - 1, chainB);
 
-	// Step 3: Initialize sorted with the first pair
+	// Step 4: Insert at the start of S the element that was paired with the smallest element of S
 	vect	sorted;
 	sorted.push_back(chainA[0]);
 	sorted.push_back(chainB[0]);
 
-	// Step 4: Insert remaining elements using Ford-Johnson insertion order
+	// Step 4: Insert the remaining n/2 - 1  using Jacobsthal Numbers for binary search.
 	vInsertRemainingElements(sorted, chainA, chainB);
 
 	vec = sorted;
@@ -214,7 +215,6 @@ void	PmergeMe::vInsertRemainingElements(vect &sorted, const vect &chainA, const 
 
 	while (insertedCount < chainA.size())
 	{
-		// Insert elements up to the next Jacobsthal number
 		for (size_t i = insertedCount + 1; i <= nextJacobsthal; ++i)
 		{
 			if (i - 1 < chainA.size())
@@ -232,8 +232,6 @@ void	PmergeMe::vInsertRemainingElements(vect &sorted, const vect &chainA, const 
 		jacobsthalIndex++;
 		nextJacobsthal = std::min(jacobsthalNumber(jacobsthalIndex), chainA.size());
 	}
-
-	// Insert any remaining elements from chainB that were not inserted
 	for (size_t i = insertedCount; i < chainB.size(); ++i)
 	{
 		vIterator pos = std::lower_bound(sorted.begin(), sorted.end(), chainB[i]);
