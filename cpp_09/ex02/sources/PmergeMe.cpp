@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:19:02 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/10/01 13:14:55 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/10/01 13:47:56 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,39 +197,6 @@ void PmergeMe::vPairElements(vect &chainA, vect &chainB)
 	}
 }
 
-void	PmergeMe::vInsertRemainingElements(vect &sorted, const vect &chainA, const vect &chainB)
-{
-	size_t jacobsthalIndex = 2;
-	size_t insertedCount = 1;
-	size_t nextJacobsthal = jacobsthalNumber(jacobsthalIndex);
-
-	while (insertedCount < chainA.size())
-	{
-		for (size_t i = insertedCount + 1; i <= nextJacobsthal; ++i)
-		{
-			if (i - 1 < chainA.size())
-			{
-				vIterator posA = std::lower_bound(sorted.begin(), sorted.end(), chainA[i - 1]);
-				sorted.insert(posA, chainA[i - 1]);
-			}
-			if (i - 1 < chainB.size())
-			{
-				vIterator posB = std::lower_bound(sorted.begin(), sorted.end(), chainB[i - 1]);
-				sorted.insert(posB, chainB[i - 1]);
-			}
-		}
-		insertedCount = nextJacobsthal;
-		jacobsthalIndex++;
-		nextJacobsthal = std::min(jacobsthalNumber(jacobsthalIndex), chainA.size());
-	}
-	for (size_t i = insertedCount; i < chainB.size(); ++i)
-	{
-		vIterator pos = std::lower_bound(sorted.begin(), sorted.end(), chainB[i]);
-		sorted.insert(pos, chainB[i]);
-	}
-}
-
-
 void	PmergeMe::vMergeInsert(int start, int end, vect& chainB)
 {
 	if (start >= end)
@@ -262,6 +229,38 @@ void	PmergeMe::vMerge(int start, int mid, int end, vect& chainB)
 		chainB[v++] = right[r++];
 }
 
+void	PmergeMe::vInsertRemainingElements(vect &sorted, const vect &chainA, const vect &chainB)
+{
+	size_t jacobsthalIndex = 2;
+	size_t insertedCount = 1;
+	size_t nextJacobsthal = jacobsthalNumber(jacobsthalIndex);
+
+	while (insertedCount < chainA.size())
+	{
+		for (size_t i = insertedCount + 1; i <= nextJacobsthal; ++i)
+		{
+			if (i - 1 < chainA.size())
+			{
+				vIterator posA = std::lower_bound(sorted.begin(), sorted.end(), chainA[i - 1]);
+				sorted.insert(posA, chainA[i - 1]);
+			}
+			if (i - 1 < chainB.size())
+			{
+				vIterator posB = std::lower_bound(sorted.begin(), sorted.end(), chainB[i - 1]);
+				sorted.insert(posB, chainB[i - 1]);
+			}
+		}
+		insertedCount = nextJacobsthal;
+		jacobsthalIndex++;
+		nextJacobsthal = std::min(jacobsthalNumber(jacobsthalIndex), chainA.size());
+	}
+	for (size_t i = insertedCount; i < chainB.size(); ++i)
+	{
+		vIterator pos = std::lower_bound(sorted.begin(), sorted.end(), chainB[i]);
+		sorted.insert(pos, chainB[i]);
+	}
+}
+
 /*----------------------------------------------------------------------------*/
 /*------------------------------- List Container -----------------------------*/
 /*----------------------------------------------------------------------------*/
@@ -279,21 +278,12 @@ void	PmergeMe::lMergeInsertionSort()
 
 	// Step 4: Insert at the start of S the element that was paired with the smallest element of S
 	list	sorted;
-	sorted.push_back(chainB.front());
-	chainB.erase(chainB.begin());
+	sorted.push_back(chainA.front());
+    sorted.push_back(chainB.front());
 
 	// Step 5: Insert the remaining n/2 - 1  using Jacobsthal Numbers for binary search.
-	for (lConstIterator it = chainA.begin(); it != chainA.end(); ++it)
-	{
-        lIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
-        sorted.insert(pos, *it);
-    }
+	lInsertRemainingElements(sorted, chainA, chainB);
 
-    for (lConstIterator it = chainB.begin(); it != chainB.end(); ++it)
-	{
-        lIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
-        sorted.insert(pos, *it);
-    }
 	lst = sorted;
 }
 
@@ -362,8 +352,41 @@ void	PmergeMe::lMerge(int start, int mid, int end, list& chainB)
 		merged.push_back(*itRight);
 		itRight++;
 	}
-	lIterator	it = lNextX(chainB.begin(), start);
-
-	it = chainB.erase(it, lNextX(it, end - start + 1));
-	chainB.insert(chainB.end(), merged.begin(), merged.end());
 }
+
+void PmergeMe::lInsertRemainingElements(list& sorted, const list& chainA, const list& chainB)
+{
+	size_t	jacobsthalIndex = 2;
+	size_t	insertedCount = 1;
+	size_t	nextJacobsthal = jacobsthalNumber(jacobsthalIndex);
+
+	while (insertedCount < chainA.size() || insertedCount < chainB.size())
+	{
+		for (size_t i = insertedCount + 1; i <= nextJacobsthal; ++i)
+		{
+			if (i - 1 < chainA.size())
+			{
+				lConstIterator itA = std::next(chainA.begin(), i - 1);
+				lIterator posA = std::lower_bound(sorted.begin(), sorted.end(), *itA);
+				sorted.insert(posA, *itA);
+			}
+			if (i - 1 < chainB.size())
+			{
+				lConstIterator itB = std::next(chainB.begin(), i - 1);
+				lIterator posB = std::lower_bound(sorted.begin(), sorted.end(), *itB);
+				sorted.insert(posB, *itB);
+			}
+		}
+		insertedCount = nextJacobsthal;
+		jacobsthalIndex++;
+		nextJacobsthal = std::min(jacobsthalNumber(jacobsthalIndex), std::max(chainA.size(), chainB.size()));
+	}
+	for (size_t i = insertedCount; i < chainB.size(); ++i)
+	{
+		lConstIterator itB = std::next(chainB.begin(), i);
+		lIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *itB);
+		sorted.insert(pos, *itB);
+	}
+}
+
+

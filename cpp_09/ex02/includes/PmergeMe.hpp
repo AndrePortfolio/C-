@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/10/01 13:12:25 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/10/01 13:16:25 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ class PmergeMe
 		void	lPairElements(list &chainA, list &chainB);
 		void	lMergeInsert(int start, int end, list& chainB);
 		void	lMerge(int start, int mid, int end, list& chainB);
+		void	lInsertRemainingElements(list &sorted, const list &chainA, const list &chainB);
 
 	public:
 		PmergeMe(int argc, char* argv[]);
