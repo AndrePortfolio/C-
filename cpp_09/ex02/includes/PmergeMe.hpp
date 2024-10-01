@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:32:24 by andre-da          #+#    #+#             */
-/*   Updated: 2024/09/30 12:52:31 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/10/01 11:26:27 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ class PmergeMe
 		void	checkInput(int argc, char* argv[]);
 		void	sort();
 		void	vMergeInsertionSort();
-		void	vMergeInsert(int start, int end);
-		void	vMerge(int start, int mid, int end);
+		void	vMergeInsert(int start, int end, vect& chainB);
+		void	vMerge(int start, int mid, int end, vect& chainB);
 		void	lMergeInsertionSort();
 		void	lMergeInsert(int start, int end);
 		void	lMerge(int start, int mid, int end);

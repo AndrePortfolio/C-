@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:19:02 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/09/30 12:52:37 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/10/01 11:38:24 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,15 @@ void	PmergeMe::sort()
 	}
 }
 
-static vIterator vNext(vIterator it)
-{
-	return (++it);
-}
+// static vIterator vNext(vIterator it)
+// {
+// 	return (++it);
+// }
 
-static vIterator vPrev(vIterator it)
-{
-	return (--it);
-}
+// static vIterator vPrev(vIterator it)
+// {
+// 	return (--it);
+// }
 
 static lIterator lNext(lIterator it)
 {
@@ -143,89 +143,109 @@ void	PmergeMe::printSpeeds() const
 					<< listSpeed << " us" << std::endl;
 }
 
+size_t jacobsthalNumber(size_t n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    size_t a = 0, b = 1, result;
+    for (size_t i = 2; i <= n; ++i) {
+        result = b + 2 * a;
+        a = b;
+        b = result;
+    }
+    return result;
+}
+
+
 /*----------------------------------------------------------------------------*/
 /*------------------------------ Vector Container ----------------------------*/
 /*----------------------------------------------------------------------------*/
 
-void	PmergeMe::vMergeInsertionSort()
-{
-	vect		chainA;
-	vect		chainB;
-	vect		sorted;
-	vIterator	it = vec.begin();
+void PmergeMe::vMergeInsertionSort() {
+    vect chainA, chainB;
 
-	// Step 1: Pair elements from vec into chainA and chainB
-	while (it != vPrev(vec.end()) && it != vec.end())
-	{
-		if (*it < *vNext(it))
-		{
-			chainA.push_back(*it);
-			chainB.push_back(*vNext(it));
-		}
-		else
-		{
-			chainB.push_back(*it);
-			chainA.push_back(*vNext(it));
-		}
-		it += 2;
-	}	
-	if (it == vPrev(vec.end()))
-		chainB.push_back(*it);
-
-	// Step 2: Recursively sort the larger elements (chainB)
-	vMergeInsert(0, chainB.size() - 1);
-
-	// Step 3: Add the first (smallest) element from sorted chainB to 'sorted'
-	sorted.push_back(chainB.front());
-	chainB.erase(chainB.begin());
-
-	// Step 4: Insert elements from chainA into 'sorted' using binary search
-	for (vConstIterator it = chainA.begin(); it != chainA.end(); ++it)
-	{
-        vIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
-        sorted.insert(pos, *it);
+    // Step 1: Pair elements and separate into chains
+    for (size_t i = 0; i < vec.size() - 1; i += 2) {
+        if (vec[i] < vec[i + 1]) {
+            chainA.push_back(vec[i]);
+            chainB.push_back(vec[i + 1]);
+        } else {
+            chainA.push_back(vec[i + 1]);
+            chainB.push_back(vec[i]);
+        }
+    }
+    if (vec.size() % 2 != 0) {
+        chainB.push_back(vec.back());
     }
 
-    // Step 5: Insert the remaining elements from chainB into 'sorted'
-    for (vConstIterator it = chainB.begin(); it != chainB.end(); ++it)
-	{
-        vIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *it);
-        sorted.insert(pos, *it);
+    // Step 2: Recursively sort chainB
+    vMergeInsert(0, chainB.size() - 1, chainB);
+
+    // Step 3: Initialize sorted with the first pair
+    vect sorted;
+    sorted.push_back(chainA[0]);
+    sorted.push_back(chainB[0]);
+
+    // Step 4: Insert remaining elements using Ford-Johnson insertion order
+    size_t jacobsthalIndex = 2;
+    size_t insertedCount = 1;
+    size_t nextJacobsthal = jacobsthalNumber(jacobsthalIndex);
+
+    while (insertedCount < chainA.size()) {
+        // Insert elements up to the next Jacobsthal number
+        for (size_t i = insertedCount + 1; i <= nextJacobsthal; ++i) {
+            if (i - 1 < chainA.size()) {
+                vIterator posA = std::lower_bound(sorted.begin(), sorted.end(), chainA[i - 1]);
+                sorted.insert(posA, chainA[i - 1]);
+            }
+            if (i - 1 < chainB.size()) {
+                vIterator posB = std::lower_bound(sorted.begin(), sorted.end(), chainB[i - 1]);
+                sorted.insert(posB, chainB[i - 1]);
+            }
+        }
+        insertedCount = nextJacobsthal;
+        jacobsthalIndex++;
+        nextJacobsthal = std::min(jacobsthalNumber(jacobsthalIndex), chainA.size());
     }
-	vec = sorted;
+
+    // Insert any remaining elements from chainB that were not inserted
+    for (size_t i = insertedCount; i < chainB.size(); ++i) {
+        vIterator pos = std::lower_bound(sorted.begin(), sorted.end(), chainB[i]);
+        sorted.insert(pos, chainB[i]);
+    }
+
+    vec = sorted;
 }
 
-void	PmergeMe::vMergeInsert(int start, int end)
-{
-	if (start == end)
-		return ;
+void PmergeMe::vMergeInsert(int start, int end, vect& chainB) {
+    if (start >= end)
+        return;
 
-	int mid = start + (end - start) / 2;
+    int mid = start + (end - start) / 2;
 
-	vMergeInsert(start, mid);
-	vMergeInsert(mid + 1, end);
-	vMerge(start, mid, end);
+    vMergeInsert(start, mid, chainB);
+    vMergeInsert(mid + 1, end, chainB);
+    vMerge(start, mid, end, chainB);
 }
 
-void	PmergeMe::vMerge(int start, int mid, int end)
-{
-	std::vector<int> left(vec.begin() + start, vec.begin() + mid + 1);
-	std::vector<int> right(vec.begin() + mid + 1, vec.begin() + end + 1);
+void PmergeMe::vMerge(int start, int mid, int end, vect& chainB) {
+    vect left(chainB.begin() + start, chainB.begin() + mid + 1);
+    vect right(chainB.begin() + mid + 1, chainB.begin() + end + 1);
 
-	size_t l = 0, r = 0, v = start;
+    size_t l = 0, r = 0, v = start;
 
-	while (l < left.size() && r < right.size())
-	{
-		if (left[l] <= right[r])
-			vec[v++] = left[l++];
-		else
-			vec[v++] = right[r++];
-	}
-	while (l < left.size())
-		vec[v++] = left[l++];
-	while (r < right.size())
-		vec[v++] = right[r++];
+    while (l < left.size() && r < right.size()) {
+        if (left[l] <= right[r])
+            chainB[v++] = left[l++];
+        else
+            chainB[v++] = right[r++];
+    }
+    while (l < left.size())
+        chainB[v++] = left[l++];
+    while (r < right.size())
+        chainB[v++] = right[r++];
 }
+
+
 
 /*----------------------------------------------------------------------------*/
 /*------------------------------- List Container -----------------------------*/
@@ -252,7 +272,7 @@ void	PmergeMe::lMergeInsertionSort()
 			chainA.push_back(*lNext(it));
 		}
 		std::advance(it, 2);
-	}	
+	}
 	if (it == lPrev(lst.end()))
 		chainB.push_back(*it);
 
