@@ -6,7 +6,7 @@
 /*   By: andrealbuquerque <andrealbuquerque@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:19:02 by andrealbuqu       #+#    #+#             */
-/*   Updated: 2024/10/01 13:47:56 by andrealbuqu      ###   ########.fr       */
+/*   Updated: 2024/10/01 14:06:51 by andrealbuqu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 
 PmergeMe::PmergeMe() : vec(), lst() , vectorSpeed(0), listSpeed(0) {}
 
-PmergeMe::PmergeMe(int argc, char* argv[]) : vec(), lst() , vectorSpeed(0), listSpeed(0)
+PmergeMe::PmergeMe(int argc, char* argv[]) : vec(), lst() , vectorSpeed(0),
+										listSpeed(0), vDataTime(0), lDataTime(0)
 {
 	checkInput(argc, argv);
 	printState("Before: ");
@@ -57,6 +58,7 @@ void	PmergeMe::checkInput(int argc, char* argv[])
 	if (argc < 2)
 		throw std::invalid_argument("Usage: ./RPN <integerSequence>");
 
+	std::clock_t	lDataStart = std::clock();
 	for (int i = 1; i < argc; i++)
 	{
 		float value = std::atof(argv[i]);
@@ -66,8 +68,22 @@ void	PmergeMe::checkInput(int argc, char* argv[])
 		if (value > std::numeric_limits<int>::max())
 			throw std::out_of_range("Error: input is too large");
 		lst.push_back(static_cast<int>(value));
+	}
+	std::clock_t	lDataEnd = std::clock();
+	lDataTime = (static_cast<double>(lDataEnd - lDataStart) / CLOCKS_PER_SEC) * 1e6;
+	std::clock_t	vDataStart = std::clock();
+	for (int i = 1; i < argc; i++)
+	{
+		float value = std::atof(argv[i]);
+
+		if (value <= 0)
+			throw std::out_of_range("Error: input must be a positive integer");
+		if (value > std::numeric_limits<int>::max())
+			throw std::out_of_range("Error: input is too large");
 		vec.push_back(static_cast<int>(value));
 	}
+	std::clock_t	vDataEnd = std::clock();
+	vDataTime = (static_cast<double>(vDataEnd - vDataStart) / CLOCKS_PER_SEC) * 1e6;
 }
 
 void	PmergeMe::sort()
@@ -87,12 +103,12 @@ void	PmergeMe::sort()
 		start = std::clock();
 		vMergeInsertionSort();
 		end = std::clock();
-		vectorSpeed = (static_cast<double>(end - start) / CLOCKS_PER_SEC) * 1e6;
+		vectorSpeed = (static_cast<double>(end - start) / CLOCKS_PER_SEC) * 1e6 + vDataTime;
 
 		start = std::clock();
 		lMergeInsertionSort();
 		end = std::clock();
-		listSpeed = (static_cast<double>(end - start) / CLOCKS_PER_SEC) * 1e6;
+		listSpeed = (static_cast<double>(end - start) / CLOCKS_PER_SEC) * 1e6 + lDataTime;
 	}
 }
 
