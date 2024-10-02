@@ -128,6 +128,12 @@ static lIterator lNextX(lIterator it, int dist)
 	return (it);
 }
 
+static lConstIterator lConstNextX(lConstIterator it, int dist)
+{
+	std::advance(it, dist);
+	return (it);
+}
+
 void	PmergeMe::printState(const std::string& state) const
 {
 	std::cout << state;
@@ -382,13 +388,13 @@ void PmergeMe::lInsertRemainingElements(list& sorted, const list& chainA, const 
 		{
 			if (i - 1 < chainA.size())
 			{
-				lConstIterator itA = std::next(chainA.begin(), i - 1);
+				lConstIterator itA = lConstNextX(chainA.begin(), i - 1);
 				lIterator posA = std::lower_bound(sorted.begin(), sorted.end(), *itA);
 				sorted.insert(posA, *itA);
 			}
 			if (i - 1 < chainB.size())
 			{
-				lConstIterator itB = std::next(chainB.begin(), i - 1);
+				lConstIterator itB = lConstNextX(chainB.begin(), i - 1);
 				lIterator posB = std::lower_bound(sorted.begin(), sorted.end(), *itB);
 				sorted.insert(posB, *itB);
 			}
@@ -399,7 +405,7 @@ void PmergeMe::lInsertRemainingElements(list& sorted, const list& chainA, const 
 	}
 	for (size_t i = insertedCount; i < chainB.size(); ++i)
 	{
-		lConstIterator itB = std::next(chainB.begin(), i);
+		lConstIterator itB = lConstNextX(chainB.begin(), i);
 		lIterator pos = std::lower_bound(sorted.begin(), sorted.end(), *itB);
 		sorted.insert(pos, *itB);
 	}
